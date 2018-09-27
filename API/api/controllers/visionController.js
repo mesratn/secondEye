@@ -30,8 +30,6 @@ exports.get_landscape = function(req, res) {
         }
 
         let data = JSON.parse(body);
-        console.dir(data);
-
         if ('description' in data) {
             var response = '{"landscapes":[';
             for (var i = 0; i < data["description"]["captions"].length; ++i) {
