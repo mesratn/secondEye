@@ -170,9 +170,8 @@ exports.add_face = function(req, res) {
 };
 
 exports.get_added_face = function(req, res) {
-  res.json({ message: 'Test face OK' });
   const options = {
-    uri: face_api_url + '/identify?',
+    uri: face_api_url + 'persongroups/group1/persons/7751faf5-781f-485d-b454-341b165bb4e7',
     headers: {
       'Content-Type': 'application/json',
       'Ocp-Apim-Subscription-Key' : face_api_key
@@ -182,7 +181,9 @@ exports.get_added_face = function(req, res) {
     if(error){
       res.send(error);
     }
-    console.log(response.statusCode);
+    let data = JSON.parse(body);
+    console.log(data.name);
+    res.json({message: "The name is "+data.name+" ."})
+
   });
 };
-;
