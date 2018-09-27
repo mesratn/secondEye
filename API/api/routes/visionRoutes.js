@@ -13,9 +13,9 @@ module.exports = function(app) {
 
 	//Route de description de paysage urbain
 	app.route('/outdoors')
-		.post(vision.get_outdoors);
+		.post(vision.get_landscape);
 
 	//Route de description de l'intérieur
 	app.route('/indoors')
-		.post(vision.get_indoors);
+		.post(vision.get_landscape);
 };

@@ -9,10 +9,10 @@ exports.test_vision = function(req, res) {
 };
 
 exports.get_landscape = function(req, res) {
+    const sourceImageUrl = req.body.url;
     const params = {
         'visualFeatures': 'Categories,Description,Color',
     };
-    const sourceImageUrl = req.body.url;
 
     const options = {
         uri: vision_api_url + '/analyze',
@@ -39,7 +39,7 @@ exports.get_landscape = function(req, res) {
 
                 if (i)
                     response += ',';
-                response += '{"message": ' + text + '}';
+                response += '{"message": "' + text + '"}';
             }
             response += ']}';
 
@@ -51,12 +51,6 @@ exports.get_landscape = function(req, res) {
             res.json({message: 'UnknownError'});
         }
     });
-};
 
-exports.get_outdoors = function(req, res) {
-    get_landscape(req, res);
-};
 
-exports.get_indoors = function(req, res) {
-    get_landscape(req, res);
 };
