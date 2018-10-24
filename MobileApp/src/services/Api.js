@@ -37,3 +37,15 @@ export function getEmotions() {
         })
     });
 }
+
+export function getText() {
+  return RequestHandler(`${URL}/text`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    },
+    body: qs.stringify({
+      url: 'http://d2jaiao3zdxbzm.cloudfront.net/wp-content/uploads/figure-65.png'
+    })
+  });
+}
