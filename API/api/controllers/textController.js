@@ -39,7 +39,6 @@ exports.detect_text = function(req, res) {
         if (error) {
             res.send(error, 400);
         }
-
         let data = JSON.parse(body);
         if (data['categories'][0]['name'].includes("text")) {
             res.json({message: 'Image contains text'});
@@ -48,6 +47,7 @@ exports.detect_text = function(req, res) {
         }
     });
 };
+
 
 /*
  * Fonction qui lit le texte dans une image
@@ -62,6 +62,7 @@ exports.detect_text = function(req, res) {
  * Vision:Recognize Text
  * Vision:Get Recognize Text Operation Result
 */
+
 exports.read_text = function(req, res) {
     const sourceImageUrl = req.body.url;
     const params = {
