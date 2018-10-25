@@ -6,11 +6,11 @@ module.exports = function(app) {
 	//Face Routes
 
 	//Route test
-	app.route('/testFaces')
+	app.route('/faces')
 		.get(face.test_faces);
 
 	//Route de détection de visages
-	app.route('/face')
+	app.route('/faces')
 		.post(face.get_faces);
 
 	//Route de lecture des émotions
@@ -18,10 +18,10 @@ module.exports = function(app) {
 		.post(face.get_emotions);
 
 	//Route d'ajout de visage'
-	app.route('/addFace')
+	app.route('/add')
 		.post(face.add_face);
 
 	//Route de lecture de visage ajouté
-	app.route('/getAddedFace')
-		.get(face.get_added_face);
+	app.route('/added_face')
+		.post(face.get_added_face);
 };

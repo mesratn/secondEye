@@ -4,7 +4,7 @@ module.exports = function(app) {
 	var vision = require('../controllers/visionController');
 
 	// vision Routes
-	app.route('/testVision')
+	app.route('/vision')
 		.get(vision.test_vision);
 
 	//Route de description de paysage

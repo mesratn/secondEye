@@ -1,13 +1,23 @@
 'use strict';
 
-const vision_api_key = "746202e68e074d51983b4e8e4a95ff7a";
-const vision_api_url = "https://westeurope.api.cognitive.microsoft.com/vision/v2.0/";
 var request = require('request');
 
 exports.test_vision = function(req, res) {
   res.json({ message: 'Test Vision OK' });
 };
 
+/*
+ * Fonction qui décrit le paysage dans une image
+ * @body :
+ *      url : url de l'image
+ *
+ * @return :
+ *      - 400, error
+ *      - 200, json : message
+ *
+ * Cette fonction fait appel à l'API Microsoft :
+ * Vision:Analyze image
+*/
 exports.get_landscape = function(req, res) {
     const sourceImageUrl = req.body.url;
     const params = {
@@ -15,18 +25,18 @@ exports.get_landscape = function(req, res) {
     };
 
     const options = {
-        uri: vision_api_url + '/analyze',
+        uri: process.env.VISION_API_URL + '/analyze',
         qs: params,
         body: '{"url": "' + sourceImageUrl + '"}',
         headers: {
             'Content-Type': 'application/json',
-            'Ocp-Apim-Subscription-Key' : vision_api_key
+            'Ocp-Apim-Subscription-Key' : process.env.VISION_API_KEY
         }
     };
 
     request.post(options, (error, response, body) => {
         if (error) {
-            res.send(error);
+            res.send(error, 400);
         }
 
         let data = JSON.parse(body);

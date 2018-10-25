@@ -6,14 +6,14 @@ module.exports = function(app) {
 	// text Routes
 
 	//Route test
-	app.route('/TestText')
+	app.route('/text')
 		.get(text.test_text);
 
 	//Route de détection de texte
-	app.route('/detectText')
+	app.route('/text')
 		.post(text.detect_text);
 
 	//Route de lecture de texte
-	app.route('/readText')
+	app.route('/read')
 		.post(text.read_text);
 };

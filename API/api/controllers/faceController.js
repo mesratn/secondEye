@@ -1,7 +1,5 @@
 'use strict';
 
-var face_api_key = "a81e3ac9d45b4406a68e4d3cd4898c6b";
-var face_api_url = "https://westeurope.api.cognitive.microsoft.com/face/v1.0/";
 var request = require('request');
 
 exports.test_faces = function(req, res) {
@@ -9,7 +7,18 @@ exports.test_faces = function(req, res) {
 };
 
 
-//Recoit l'url de l'image, renvoit un json avec la phrase
+/*
+ * Fonction qui détecte la présence de visages dans une image
+ * @body :
+ *      url : url de l'image
+ *
+ * @return :
+ *      - 400, error
+ *      - 200, json
+ *
+ * Cette fonction fait appel à l'API Microsoft :
+ * Face:detect
+*/
 exports.get_faces = function(req, res) {
     // Request parameters
     var params = {
@@ -22,19 +31,19 @@ exports.get_faces = function(req, res) {
 
     //Request options
     const options = {
-        uri: face_api_url + '/detect',
+        uri: process.env.FACE_API_URL + '/detect',
         qs: params,
         body: '{"url": ' + '"' + sourceImageUrl + '"}',
         headers: {
             'Content-Type': 'application/json',
-            'Ocp-Apim-Subscription-Key' : face_api_key
+            'Ocp-Apim-Subscription-Key' : process.env.FACE_API_KEY
         }
     };
 
     // Perform the REST API call.
     request.post(options, (error, response, body) => {
         if (error) {
-            res.send(error);
+            res.send(error, 400);
         }
         let data = JSON.parse(body);
         var faceCount = '"I detect '+data.length+' faces!"';
@@ -61,6 +70,18 @@ exports.get_faces = function(req, res) {
     });
 };
 
+/*
+ * Fonction qui détecte les émotions sur les visages dans une image
+ * @body :
+ *      url : url de l'image
+ *
+ * @return :
+ *      - 400, error
+ *      - 200, json
+ *
+ * Cette fonction fait appel à l'API Microsoft :
+ * Face:detect
+*/
 exports.get_emotions = function(req, res) {
     // Request parameters
     var params = {
@@ -73,12 +94,12 @@ exports.get_emotions = function(req, res) {
 
     //Request options
     const options = {
-        uri: face_api_url + '/detect',
+        uri: process.env.FACE_API_URL + '/detect',
         qs: params,
         body: '{"url": ' + '"' + sourceImageUrl + '"}',
         headers: {
             'Content-Type': 'application/json',
-            'Ocp-Apim-Subscription-Key' : face_api_key
+            'Ocp-Apim-Subscription-Key' : process.env.FACE_API_KEY
         }
     };
 
@@ -120,10 +141,37 @@ exports.get_emotions = function(req, res) {
     });
 };
 
+/*
+ * Fonction qui lie un nom à un visage
+ * @body :
+ *      url : url de l'image
+ *      name : nom de la personne
+ *
+ * @return :
+ *      -
+ *
+ * Cette fonction fait 3 appels à l'API Microsoft :
+ * PersonGroup Person:Creat (recupère le personID)
+ * PersonGroup Person:Add Face (envoie l'image et le personID et recupère le persistedFaceID)
+ * PersonGroup:Train Enregistre les personne et sert à les préparer pour le détect
+*/
 exports.add_face = function(req, res) {
     res.json({ message: 'Test face OK' });
 };
 
+/*
+ * Fonction qui détecte les personnes enregistrés
+ * @body :
+ *      url : url de l'image
+ *
+ * @return :
+ *      -
+ *
+ * Cette fonction fait 3 appels à l'API Microsoft :
+ * Face:Detect (recupère le FaceID)
+ * Face:Identify (envoie les FaceID et récupère les personID)
+ * PersonGroup Person:Get (Envoie le personID et récupère le name)
+*/
 exports.get_added_face = function(req, res) {
     res.json({ message: 'Test face OK' });
 };
