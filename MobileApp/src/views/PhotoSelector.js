@@ -65,7 +65,7 @@ const pickerOptions = {
     }
 }
 
-export default class photoSelector extends Component {
+export default class PhotoSelector extends Component {
     static navigationOptions = {
         header: null,
     };
@@ -95,7 +95,7 @@ export default class photoSelector extends Component {
             alert(JSON.stringify(response.error));
         else {
             this.setState({ modalVisible: false }, () => {
-                this.props.navigation.navigate('detectionSelectorView');
+                this.props.navigation.navigate('DetectionSelectorView');
             });
         }
     }

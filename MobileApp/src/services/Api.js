@@ -51,7 +51,7 @@ export function getLandscapes(){
 }
 
 export function getTexts(){
-    return RequestHandler(`$(URL)/read`, {
+    return RequestHandler(`${URL}/read`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -63,7 +63,7 @@ export function getTexts(){
 }
 
 export function saveFace(){
-    return RequestHandler(`$(URL)/add`, {
+    return RequestHandler(`${URL}/add`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'

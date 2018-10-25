@@ -2,11 +2,11 @@
 import { createStackNavigator } from 'react-navigation';
 
 // Routes
-import photoSelector from "./views/photoSelector";
-import detectionSelector from "./views/detectionSelector";
-import resultsAnalysisFace from "./views/resultsAnalysisFace";
-import resultsAnalysisLandscape from "./views/resultsAnalysisLandscape";
-import resultsAnalysisText from "./views/resultsAnalysisText";
+import PhotoSelector from "./views/PhotoSelector";
+import DetectionSelector from "./views/DetectionSelector";
+import ResultsAnalysisFace from "./views/ResultsAnalysisFace";
+import ResultsAnalysisLandscape from "./views/ResultsAnalysisLandscape";
+import ResultsAnalysisText from "./views/ResultsAnalysisText";
 
 // Style
 const styleOptions = {
@@ -18,13 +18,13 @@ const styleOptions = {
           textTransform: 'uppercase'
         },
     },
-    initialRouteName: 'photoSelectorView'
+    initialRouteName: 'PhotoSelectorView'
 }
 
 export const AppStack = createStackNavigator({
-    photoSelectorView: photoSelector,
-    detectionSelectorView: detectionSelector,
-    resultsAnalysisFaceView: resultsAnalysisFace,
-    resultsAnalysisLandscapeView: resultsAnalysisLandscape,
-    resultsAnalysisTextView: resultsAnalysisText
+    PhotoSelectorView: PhotoSelector,
+    DetectionSelectorView: DetectionSelector,
+    ResultsAnalysisFaceView: ResultsAnalysisFace,
+    ResultsAnalysisLandscapeView: ResultsAnalysisLandscape,
+    ResultsAnalysisTextView: ResultsAnalysisText
 }, styleOptions);

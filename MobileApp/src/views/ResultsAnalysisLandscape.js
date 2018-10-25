@@ -4,7 +4,7 @@ import { ScrollView, View, StyleSheet, Text, Image } from 'react-native';
 import { Button, Divider } from "react-native-elements";
 import Tts from 'react-native-tts';
 
-import { getLanscapes } from "../services/Api";
+import { getLandscapes } from "../services/Api";
 
 const localStyles = StyleSheet.create({
 	container: {
@@ -13,7 +13,7 @@ const localStyles = StyleSheet.create({
 	},
 });
 
-export default class resultsAnalysisLandscape extends Component {
+export default class ResultsAnalysisLandscape extends Component {
 	static navigationOptions = {
 		title: 'RESULTATS DE LA DETECTION',
 	};
@@ -27,10 +27,10 @@ export default class resultsAnalysisLandscape extends Component {
 		}
 	}
 
-	ComponentDidMount(){
-		getLanscapes().then((landscapes) => {
+	componentDidMount(){
+		getLandscapes().then((landscapes) => {
 			this.setState({
-				loading:false,
+				loading: false,
 				landscapes: landscapes
 			});
 		}).catch((err) => alert(err + ""));
