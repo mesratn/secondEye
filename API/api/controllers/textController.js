@@ -6,6 +6,7 @@
 var vision_api_key = "746202e68e074d51983b4e8e4a95ff7a";
 var vision_api_url = "https://westeurope.api.cognitive.microsoft.com/vision/v2.0/";
 var request = require('request');
+var sleep = require('sleep');
 
 exports.test_text = function(req, res) {
     res.json({ message: 'Test Text OK' });
@@ -60,16 +61,29 @@ exports.read_text = function(req, res) {
         }
     };
 
-    console.log(options);
-
-    request.post(options, (error, response, body) => {
-        if (error) {
-            console.log("ERROR");
-            res.send(error);
-        } else {
-            console.log(response['IncomingMessage']);
-            let data = JSON.parse(response);
-            console.log(data['IncomingMessage']);
-        }
+    request.post(options).on('response', (response) => {
+        sleep.sleep(4);
+        const options = {
+            uri: response['headers']['operation-location'],
+            headers: {
+                'Ocp-Apim-Subscription-Key' : vision_api_key
+            }
+        };  
+        request.get(options, (error, response, body) => {
+            if (error) {
+                res.send(error);
+            }
+            var data = JSON.parse(body);
+            var message = '';
+            console.log(data['status']);
+            if (data['status'] === 'Succeeded') {
+                for (var i = 0, len = data['recognitionResult']['lines'].length; i < len; i++) {
+                    message += data['recognitionResult']['lines'][i]['text'] + '. ';
+                }
+                res.json({message: message});
+            } else {
+                res.send('The text has not been analyzed yet');
+            }
+        });
     });
 };
