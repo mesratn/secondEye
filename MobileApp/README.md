@@ -34,14 +34,3 @@ Run the project with this command, where `<platform>` can be `android` or `ios`:
 Exemple for android devices:
 
     react-native run-android
-
-# DONE AND TODO
-
-Task                | Description | Status
-----                |----|----
-Take picture        |Take a picture from app with the camera|Done
-Get picture         |Take a picture from the device library|Done
-Select detection    |Select the detection type for a picture|Done
-Data flow           |Pass data between pages, and get it in the results page|TODO
-API calls           |Add API call to results page and then display results|TODO
-Login               |Add login page|TODO

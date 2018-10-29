@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Button, Divider } from "react-native-elements";
 import Modal from "react-native-modal";
-
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+
+import { AppStyle } from "../utils/Styles";
+
 
 const localStyles = StyleSheet.create({
     containerImage: {
@@ -42,18 +44,6 @@ const localStyles = StyleSheet.create({
         color: '#333333',
         marginBottom: 5,
         padding: 50
-    },
-    bottomModal: {
-        justifyContent: "flex-end",
-        margin: 0,
-    },
-    modalContent: {
-        backgroundColor: "white",
-        padding: 22,
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 4,
-        borderColor: "rgba(0, 0, 0, 0.1)"
     }
 });
 
@@ -107,10 +97,10 @@ export default class PhotoSelector extends Component {
             <View style={localStyles.container}>
                 <Modal 
                     isVisible={this.state.modalVisible}
-                    style={localStyles.bottomModal}
+                    style={AppStyle.bottomModal}
                     onBackdropPress={() => this.setState({ modalVisible: false })}
                 >
-                    <View style={localStyles.modalContent}>
+                    <View style={AppStyle.modalContent}>
                         <Button
                             raised
                             borderRadius={50}
