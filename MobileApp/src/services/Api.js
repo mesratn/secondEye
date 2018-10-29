@@ -1,5 +1,5 @@
 import qs from "qs";
-const URL = 'http://51.75.21.24:3000';
+const URL = 'http://192.168.1.141:3000';
 
 // OTHERS FUNCTIONS
 
@@ -20,20 +20,21 @@ function RequestHandler(url, options = {}) {
 }
 
 function errorHandler(response) {
+    console.log(response);
     if (!response.ok)
         throw JSON.parse(response._bodyText) || response._bodyText;
     else
         return JSON.parse(response._bodyText);
 }
 
-export function getEmotions() {
+export function getEmotions(image) {
     return RequestHandler(`${URL}/emotions`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },
         body: qs.stringify({
-            url: 'https://pbs.twimg.com/profile_images/1007439915917938688/ZsxLbPmx_400x400.jpg'
+            url: image
         })
     });
 }

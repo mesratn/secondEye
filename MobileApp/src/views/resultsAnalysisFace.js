@@ -21,16 +21,24 @@ export default class resultsAnalysisFace extends Component {
     constructor(props) {
         super(props);
 
+        const { navigation } = this.props;
+        const data = navigation.getParam('data', {});
+
         this.state = {
             loading: true,
             emotions: {},
             name: '',
-            returnSaveFace: {}
+            returnSaveFace: {},
+            image: data
         }
     }
 
     componentDidMount() {
-        getEmotions().then((emotions) => {
+        const image = this.state.image;
+        const imageURI = `data:${image.type};base64,${image.data}`;
+
+        getEmotions(imageURI).then((emotions) => {
+            console.log(emotions);
             this.setState({
                 loading: false,
                 emotions: emotions
@@ -63,6 +71,9 @@ export default class resultsAnalysisFace extends Component {
     }
 
     render() {
+        const image = this.state.image;
+        const imageURI = `data:${image.type};base64,${image.data}`;
+        
         return (
             <ScrollView contentContainerStyle={localStyles.container}>
 
@@ -70,7 +81,7 @@ export default class resultsAnalysisFace extends Component {
 
                 <Image
                     style={{ height: 400, width: 400}}
-                    source={{ uri: 'https://pbs.twimg.com/profile_images/1007439915917938688/ZsxLbPmx_400x400.jpg' }}
+                    source={{ uri: imageURI }}
                 />
 
                 <Button

@@ -5,8 +5,8 @@ var express = require('express'),
     port = process.env.PORT || 3000,
     bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '10mb', extended: true}))
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
 
 var routes = require('./api/routes/visionRoutes'); //importing route
 routes(app); //register the route

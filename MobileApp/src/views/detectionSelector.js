@@ -51,6 +51,10 @@ export default class detectionSelector extends Component {
     }
 
     render() {
+
+        const { navigation } = this.props;
+        const data = navigation.getParam('data', {});
+
         return (
             <ScrollView contentContainerStyle={localStyles.container}>
 
@@ -67,7 +71,7 @@ export default class detectionSelector extends Component {
                     icon={{ name: 'tag-faces' }}
                     containerViewStyle={localStyles.button}
                     title='DÉTECTION DES ÉMOTIONS & VISAGES'
-                    onPress={() => this.props.navigation.navigate('resultsAnalysisFaceView')}
+                    onPress={() => this.props.navigation.navigate('resultsAnalysisFaceView', { data: data })}
                 />
 
                 <Divider style={localStyles.divider}/>
@@ -86,7 +90,7 @@ export default class detectionSelector extends Component {
                     icon={{ name: 'face' }}
                     containerViewStyle={localStyles.button}
                     title='DÉTECTION DES TEXTES'
-                    onPress={() => this.props.navigation.navigate('resultsAnalysisTextView')}
+                    onPress={() => this.props.navigation.navigate('resultsAnalysisTextView', { data: data })}
                 />
 
                 <Divider style={localStyles.divider}/>
@@ -104,7 +108,7 @@ export default class detectionSelector extends Component {
                     icon={{ name: 'photo' }}
                     containerViewStyle={localStyles.button}
                     title='DÉTECTION DE PAYSAGE'
-                    onPress={() => this.props.navigation.navigate('resultsAnalysisLandscapeView')}
+                    onPress={() => this.props.navigation.navigate('resultsAnalysisLandscapeView', { data: data })}
                 />
             </ScrollView>
         );
