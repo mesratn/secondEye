@@ -85,8 +85,8 @@ exports.get_faces = function (req, res) {
  * Face:detect
  */
 exports.get_emotions = (req, res) => {
-    const sourceImageUrl = req.body.url;
-    const imageBinary = converteur(sourceImageUrl);
+    const sourceImageURI = req.body.data;
+    const imageBinary = converteur(sourceImageURI);
 
     // Request parameters
     const params = {

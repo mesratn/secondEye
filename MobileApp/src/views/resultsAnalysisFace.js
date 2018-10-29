@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import { ScrollView, View, StyleSheet, Text, Image, TextInput } from 'react-native';
-import { Button, Divider } from "react-native-elements";
+import { ScrollView, View, StyleSheet, Text, Image, Dimensions } from 'react-native';
+import { Button, Divider, FormLabel, FormInput } from "react-native-elements";
 import Tts from 'react-native-tts';
 
 import { getEmotions } from "../services/Api";
@@ -11,6 +11,35 @@ const localStyles = StyleSheet.create({
         height: null,
         padding: 15
     },
+    title: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: '500',
+        margin: 10,
+        color: '#7289DA'
+    },
+    instructions: {
+        textAlign: 'left',
+        fontSize: 14,
+        marginBottom: 5,
+        paddingLeft: 15,
+        paddingRight: 15
+    },
+    button: {
+        width: null,
+        margin: 15
+    },
+    input: {
+        backgroundColor: 'white',
+        borderRadius: 50,
+        paddingLeft: 15,
+        paddingRight: 15
+    },
+    divider: {
+        backgroundColor: '#AAAAAA',
+        // marginTop: 15,
+        // marginBottom: 15
+    }
 });
 
 export default class resultsAnalysisFace extends Component {
@@ -37,8 +66,13 @@ export default class resultsAnalysisFace extends Component {
         const image = this.state.image;
         const imageURI = `data:${image.type};base64,${image.data}`;
 
+        // calculate image width and height 
+        const screenWidth = Dimensions.get('window').width - (localStyles.container.padding * 2)
+        const scaleFactor = image.width / screenWidth
+        const imageHeight = image.height / scaleFactor
+        this.setState({ imgWidth: screenWidth, imgHeight: imageHeight })
+
         getEmotions(imageURI).then((emotions) => {
-            console.log(emotions);
             this.setState({
                 loading: false,
                 emotions: emotions
@@ -56,13 +90,14 @@ export default class resultsAnalysisFace extends Component {
                 androidParams: {
                     KEY_PARAM_PAN: -1,
                     KEY_PARAM_VOLUME: 1,
-                    KEY_PARAM_STREAM: 'STREAM_MUSIC' }
-                });
+                    KEY_PARAM_STREAM: 'STREAM_MUSIC'
+                }
+            });
         });
     }
 
-    onStartSending(){
-        saveFace().then((returnSaveFace) =>{
+    onStartSending() {
+        saveFace().then((returnSaveFace) => {
             this.setState({
                 save: returnSaveFace
             });
@@ -71,18 +106,28 @@ export default class resultsAnalysisFace extends Component {
     }
 
     render() {
+        const emotions = this.state.emotions;
         const image = this.state.image;
         const imageURI = `data:${image.type};base64,${image.data}`;
-        
+        const { imgWidth, imgHeight } = this.state
+
         return (
             <ScrollView contentContainerStyle={localStyles.container}>
 
-                <Text> Résultats de l analyse </Text>
+                <Text style={localStyles.title}> ÉMOTIONS </Text>
 
                 <Image
-                    style={{ height: 400, width: 400}}
+                    style={{ width: imgWidth, height: imgHeight, borderRadius: 50, marginBottom: 15 }}
                     source={{ uri: imageURI }}
                 />
+
+                {(emotions.faces || []).map((person, index) => {
+                    return (
+                        <Text key={index} style={localStyles.instructions}>
+                            {person.message}
+                        </Text>
+                    );
+                })}
 
                 <Button
                     raised
@@ -92,23 +137,27 @@ export default class resultsAnalysisFace extends Component {
                     backgroundColor="#7289DA"
                     icon={{ name: 'play-arrow' }}
                     title='LECTURE DES DONNÉES'
-                    containerViewStyle={{ width: '100%' }}
+                    containerViewStyle={localStyles.button}
                     onPress={() => this.onStartReading()}
                 />
 
-                <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={(name) => this.setState({name})}
+                <Divider style={localStyles.divider}/>
+
+                <FormLabel>PRÉNOM</FormLabel>
+                <FormInput
+                    containerStyle={localStyles.input}
                     value={this.state.name}
+                    onChangeText={(name) => this.setState({ name: name })}    
                 />
 
                 <Button
                     raised
-                    disabled={() => this.state.name && this.state.name != ''? false:true}
+                    disabled={this.state.name && this.state.name != '' ? false : true}
                     borderRadius={50}
                     backgroundColor="#7289DA"
+                    icon={{ name: 'save' }}
                     title='ENREGISTRER LE VISAGE ?'
-                    containerViewStyle={{ width: '100%' }}
+                    containerViewStyle={localStyles.button}
                     onPress={() => this.onStartSending()}
                 />
 

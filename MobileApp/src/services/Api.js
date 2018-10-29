@@ -20,7 +20,6 @@ function RequestHandler(url, options = {}) {
 }
 
 function errorHandler(response) {
-    console.log(response);
     if (!response.ok)
         throw JSON.parse(response._bodyText) || response._bodyText;
     else
@@ -34,7 +33,7 @@ export function getEmotions(image) {
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },
         body: qs.stringify({
-            url: image
+            data: image
         })
     });
 }
