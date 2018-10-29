@@ -41,7 +41,7 @@ const localStyles = StyleSheet.create({
     }
 });
 
-export default class detectionSelector extends Component {
+export default class DetectionSelector extends Component {
     static navigationOptions = {
         title: 'CHOIX DE LA DÉTECTION',
     };

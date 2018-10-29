@@ -65,7 +65,7 @@ const pickerOptions = {
     }
 }
 
-export default class photoSelector extends Component {
+export default class PhotoSelector extends Component {
     static navigationOptions = {
         header: null,
     };

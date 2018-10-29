@@ -13,7 +13,7 @@ const localStyles = StyleSheet.create({
     },
 });
 
-export default class resultsAnalysisText extends Component {
+export default class ResultsAnalysisText extends Component {
     static navigationOptions = {
         title: 'RÉSULTATS DE LA DÉTECTION',
     };

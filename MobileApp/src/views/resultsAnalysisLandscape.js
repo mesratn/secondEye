@@ -13,7 +13,7 @@ const localStyles = StyleSheet.create({
 	},
 });
 
-export default class resultsAnalysisLandscape extends Component {
+export default class ResultsAnalysisLandscape extends Component {
 	static navigationOptions = {
 		title: 'RESULTATS DE LA DETECTION',
 	};
