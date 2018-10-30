@@ -4903,6 +4903,11 @@ react-native-modal@^6.5.0:
     prop-types "^15.6.1"
     react-native-animatable "^1.2.4"
 
+react-native-pulse@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-pulse/-/react-native-pulse-1.0.6.tgz#6d33260ad53730a8c12c96eac1453c31eb80c91a"
+  integrity sha1-bTMmCtU3MKjBLJbqwUU8MeuAyRo=
+
 react-native-safe-area-view@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.7.0.tgz#38f5ab9368d6ef9e5d18ab64212938af3ec39421"
@@ -4944,6 +4949,11 @@ react-native-vector-icons@^5.0.0:
     lodash "^4.0.0"
     prop-types "^15.5.10"
     yargs "^8.0.2"
+
+react-native-voice@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/react-native-voice/-/react-native-voice-0.2.6.tgz#f6c67fac932a511475ddc4c7b6ff0efeb540cc19"
+  integrity sha512-WeNlNNtYDxwyym203yzjTDDCH9iLThi24W85p0oP/0DS9jZ6B6WsPYidWyKg6Qv1TrOq/gHz9vwQLZforM7u3w==
 
 react-native@^0.56.0:
   version "0.56.1"

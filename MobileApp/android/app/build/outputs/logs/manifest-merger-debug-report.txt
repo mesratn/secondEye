@@ -4,19 +4,12 @@ ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidMa
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
+MERGED from [:react-native-voice] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-voice/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-16:12
 MERGED from [:react-native-tts] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-tts/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-vector-icons] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-image-picker] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-23:12
 MERGED from [com.facebook.react:react-native:0.56.1] /home/quentin/.gradle/caches/transforms-1/files-1.1/react-native-0.56.1.aar/28af875632727a2c28279ce610d03976/AndroidManifest.xml:2:1-15:12
 MERGED from [com.android.support:appcompat-v7:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/88abf14f6654b31581d604b526ff73f2/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/a499f668211a333cfb0affa5d478d1a9/AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/95541108b12ee285f1d9c55cd17b53cc/AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:support-v4:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/df126b0023c19b97cc7c722fcf8860d4/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-media-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/e12e084ad3dfe89ccab6fa9f42c70de3/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-fragment:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/01859c69a475e5bd164cba67174c629f/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-core-utils:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/dd120745c3c438dae871d6c2cde45c23/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-core-ui:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/2fabda6a32963b3a8250d8bf81a88616/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/1959ac39369c2f3d6748b9c7c78fe0a6/AndroidManifest.xml:17:1-31:12
 MERGED from [com.facebook.fbui.textlayoutbuilder:textlayoutbuilder:1.0.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/textlayoutbuilder-1.0.0.aar/dcea9ee6328de83e473831c71056f7ce/AndroidManifest.xml:10:1-18:12
 MERGED from [com.facebook.fresco:fresco:1.9.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/fresco-1.9.0.aar/7f8767b9ea030a9cd7bf765c5b809fde/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.9.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-1.9.0.aar/408ff07f2461b1efbf9800bf4d15f581/AndroidManifest.xml:2:1-9:12
@@ -26,6 +19,14 @@ MERGED from [com.facebook.fresco:imagepipeline-base:1.9.0] /home/quentin/.gradle
 MERGED from [com.facebook.soloader:soloader:0.3.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/soloader-0.3.0.aar/260ff7ef640c70259d86dd57990a0286/AndroidManifest.xml:2:1-13:12
 MERGED from [org.webkit:android-jsc:r174650] /home/quentin/.gradle/caches/transforms-1/files-1.1/android-jsc-r174650.aar/a7d785b06a09ce4aa0cd870266697e40/AndroidManifest.xml:1:1-3:12
 MERGED from [com.facebook.fresco:fbcore:1.9.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/fbcore-1.9.0.aar/23809e4bcdb70944ad441f4ca8f52126/AndroidManifest.xml:2:1-9:12
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/a499f668211a333cfb0affa5d478d1a9/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/95541108b12ee285f1d9c55cd17b53cc/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/df126b0023c19b97cc7c722fcf8860d4/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/e12e084ad3dfe89ccab6fa9f42c70de3/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/01859c69a475e5bd164cba67174c629f/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/dd120745c3c438dae871d6c2cde45c23/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/2fabda6a32963b3a8250d8bf81a88616/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/1959ac39369c2f3d6748b9c7c78fe0a6/AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/c92878d55cb7da36d2f27624b0e5cd75/AndroidManifest.xml:17:1-30:12
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
@@ -46,6 +47,8 @@ INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/Androi
 		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:11-69
 uses-permission#android.permission.INTERNET
 ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:4:5-67
+MERGED from [:react-native-voice] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-voice/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:14:5-67
+MERGED from [:react-native-voice] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-voice/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:14:5-67
 	android:name
 		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:4:22-64
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
@@ -70,6 +73,10 @@ MERGED from [com.facebook.react:react-native:0.56.1] /home/quentin/.gradle/cache
 MERGED from [com.facebook.react:react-native:0.56.1] /home/quentin/.gradle/caches/transforms-1/files-1.1/react-native-0.56.1.aar/28af875632727a2c28279ce610d03976/AndroidManifest.xml:13:5-20
 MERGED from [com.android.support:appcompat-v7:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/88abf14f6654b31581d604b526ff73f2/AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:appcompat-v7:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/88abf14f6654b31581d604b526ff73f2/AndroidManifest.xml:25:5-29:19
+MERGED from [com.facebook.soloader:soloader:0.3.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/soloader-0.3.0.aar/260ff7ef640c70259d86dd57990a0286/AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:soloader:0.3.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/soloader-0.3.0.aar/260ff7ef640c70259d86dd57990a0286/AndroidManifest.xml:11:5-20
+MERGED from [org.webkit:android-jsc:r174650] /home/quentin/.gradle/caches/transforms-1/files-1.1/android-jsc-r174650.aar/a7d785b06a09ce4aa0cd870266697e40/AndroidManifest.xml:2:3-17
+MERGED from [org.webkit:android-jsc:r174650] /home/quentin/.gradle/caches/transforms-1/files-1.1/android-jsc-r174650.aar/a7d785b06a09ce4aa0cd870266697e40/AndroidManifest.xml:2:3-17
 MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/a499f668211a333cfb0affa5d478d1a9/AndroidManifest.xml:22:5-26:19
 MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/a499f668211a333cfb0affa5d478d1a9/AndroidManifest.xml:22:5-26:19
 MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/95541108b12ee285f1d9c55cd17b53cc/AndroidManifest.xml:22:5-26:19
@@ -86,10 +93,6 @@ MERGED from [com.android.support:support-core-ui:26.1.0] /home/quentin/.gradle/c
 MERGED from [com.android.support:support-core-ui:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/2fabda6a32963b3a8250d8bf81a88616/AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/1959ac39369c2f3d6748b9c7c78fe0a6/AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/1959ac39369c2f3d6748b9c7c78fe0a6/AndroidManifest.xml:25:5-29:19
-MERGED from [com.facebook.soloader:soloader:0.3.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/soloader-0.3.0.aar/260ff7ef640c70259d86dd57990a0286/AndroidManifest.xml:11:5-20
-MERGED from [com.facebook.soloader:soloader:0.3.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/soloader-0.3.0.aar/260ff7ef640c70259d86dd57990a0286/AndroidManifest.xml:11:5-20
-MERGED from [org.webkit:android-jsc:r174650] /home/quentin/.gradle/caches/transforms-1/files-1.1/android-jsc-r174650.aar/a7d785b06a09ce4aa0cd870266697e40/AndroidManifest.xml:2:3-17
-MERGED from [org.webkit:android-jsc:r174650] /home/quentin/.gradle/caches/transforms-1/files-1.1/android-jsc-r174650.aar/a7d785b06a09ce4aa0cd870266697e40/AndroidManifest.xml:2:3-17
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/c92878d55cb7da36d2f27624b0e5cd75/AndroidManifest.xml:24:5-28:19
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/c92878d55cb7da36d2f27624b0e5cd75/AndroidManifest.xml:24:5-28:19
 	android:label
@@ -130,6 +133,8 @@ uses-sdk
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
+MERGED from [:react-native-voice] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-voice/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:8:5-11:54
+MERGED from [:react-native-voice] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-voice/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:8:5-11:54
 MERGED from [:react-native-tts] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-tts/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-tts] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-tts/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
@@ -140,22 +145,6 @@ MERGED from [com.facebook.react:react-native:0.56.1] /home/quentin/.gradle/cache
 MERGED from [com.facebook.react:react-native:0.56.1] /home/quentin/.gradle/caches/transforms-1/files-1.1/react-native-0.56.1.aar/28af875632727a2c28279ce610d03976/AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/88abf14f6654b31581d604b526ff73f2/AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:appcompat-v7:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/88abf14f6654b31581d604b526ff73f2/AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/a499f668211a333cfb0affa5d478d1a9/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/a499f668211a333cfb0affa5d478d1a9/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/95541108b12ee285f1d9c55cd17b53cc/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/95541108b12ee285f1d9c55cd17b53cc/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/df126b0023c19b97cc7c722fcf8860d4/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-v4:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/df126b0023c19b97cc7c722fcf8860d4/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-media-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/e12e084ad3dfe89ccab6fa9f42c70de3/AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-media-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/e12e084ad3dfe89ccab6fa9f42c70de3/AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-fragment:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/01859c69a475e5bd164cba67174c629f/AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-fragment:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/01859c69a475e5bd164cba67174c629f/AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-core-utils:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/dd120745c3c438dae871d6c2cde45c23/AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-core-utils:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/dd120745c3c438dae871d6c2cde45c23/AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-core-ui:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/2fabda6a32963b3a8250d8bf81a88616/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-ui:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/2fabda6a32963b3a8250d8bf81a88616/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/1959ac39369c2f3d6748b9c7c78fe0a6/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/1959ac39369c2f3d6748b9c7c78fe0a6/AndroidManifest.xml:21:5-23:58
 MERGED from [com.facebook.fbui.textlayoutbuilder:textlayoutbuilder:1.0.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/textlayoutbuilder-1.0.0.aar/dcea9ee6328de83e473831c71056f7ce/AndroidManifest.xml:14:5-16:41
 MERGED from [com.facebook.fbui.textlayoutbuilder:textlayoutbuilder:1.0.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/textlayoutbuilder-1.0.0.aar/dcea9ee6328de83e473831c71056f7ce/AndroidManifest.xml:14:5-16:41
 MERGED from [com.facebook.fresco:fresco:1.9.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/fresco-1.9.0.aar/7f8767b9ea030a9cd7bf765c5b809fde/AndroidManifest.xml:5:5-7:41
@@ -172,12 +161,28 @@ MERGED from [com.facebook.soloader:soloader:0.3.0] /home/quentin/.gradle/caches/
 MERGED from [com.facebook.soloader:soloader:0.3.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/soloader-0.3.0.aar/260ff7ef640c70259d86dd57990a0286/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.fresco:fbcore:1.9.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/fbcore-1.9.0.aar/23809e4bcdb70944ad441f4ca8f52126/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:fbcore:1.9.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/fbcore-1.9.0.aar/23809e4bcdb70944ad441f4ca8f52126/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/a499f668211a333cfb0affa5d478d1a9/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/a499f668211a333cfb0affa5d478d1a9/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/95541108b12ee285f1d9c55cd17b53cc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/95541108b12ee285f1d9c55cd17b53cc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/df126b0023c19b97cc7c722fcf8860d4/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/df126b0023c19b97cc7c722fcf8860d4/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/e12e084ad3dfe89ccab6fa9f42c70de3/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/e12e084ad3dfe89ccab6fa9f42c70de3/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/01859c69a475e5bd164cba67174c629f/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/01859c69a475e5bd164cba67174c629f/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/dd120745c3c438dae871d6c2cde45c23/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/dd120745c3c438dae871d6c2cde45c23/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/2fabda6a32963b3a8250d8bf81a88616/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/2fabda6a32963b3a8250d8bf81a88616/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/1959ac39369c2f3d6748b9c7c78fe0a6/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/1959ac39369c2f3d6748b9c7c78fe0a6/AndroidManifest.xml:21:5-23:58
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/c92878d55cb7da36d2f27624b0e5cd75/AndroidManifest.xml:20:5-22:41
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/c92878d55cb7da36d2f27624b0e5cd75/AndroidManifest.xml:20:5-22:41
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
 	tools:overrideLibrary
-		ADDED from [com.android.support:appcompat-v7:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/88abf14f6654b31581d604b526ff73f2/AndroidManifest.xml:23:9-75
+		ADDED from [:react-native-voice] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-voice/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:11:9-51
 	android:targetSdkVersion
 		INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
 		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
@@ -186,6 +191,10 @@ INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/Androi
 		INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
 		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
 		INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from [:react-native-voice] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-voice/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:13:5-71
+	android:name
+		ADDED from [:react-native-voice] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-voice/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:13:22-68
 provider#com.imagepicker.FileProvider
 ADDED from [:react-native-image-picker] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:12:9-20:20
 	android:grantUriPermissions
