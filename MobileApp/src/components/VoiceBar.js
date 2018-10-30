@@ -57,6 +57,7 @@ const localStyles = StyleSheet.create({
     },
     pulseContainer: {
         position: 'absolute',
-        bottom: 50
+        bottom: 40,
+        right: 55
     },
 });
