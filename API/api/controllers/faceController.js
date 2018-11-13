@@ -13,7 +13,7 @@ exports.test_faces = function (req, res) {
 /*
  * Fonction qui détecte la présence de visages dans une image
  * @body :
- *      url : url de l'image
+ *      data : l'image en b64
  *
  * @return :
  *      - 400, error
@@ -29,15 +29,16 @@ exports.get_faces = function (req, res) {
         "returnFaceLandmarks": "false",
         "returnFaceAttributes": "age,gender,smile,glasses"
     };
-    var sourceImageUrl = req.body.url;
+    const sourceImage = req.body.data;
+    const imageBinary = converteur(sourceImage);
 
     //Request options
     const options = {
         uri: process.env.FACE_API_URL + '/detect',
         qs: params,
-        body: '{"url": ' + '"' + sourceImageUrl + '"}',
+        body: imageBinary,
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/octet-stream',
             'Ocp-Apim-Subscription-Key': process.env.FACE_API_KEY
         }
     };
@@ -75,7 +76,7 @@ exports.get_faces = function (req, res) {
 /*
  * Fonction qui détecte les émotions sur les visages dans une image
  * @body :
- *      url : url de l'image
+ *      data : l'image en b64
  *
  * @return :
  *      - 400, error
@@ -85,8 +86,8 @@ exports.get_faces = function (req, res) {
  * Face:detect
  */
 exports.get_emotions = (req, res) => {
-    const sourceImageURI = req.body.data;
-    const imageBinary = converteur(sourceImageURI);
+    const sourceImage = req.body.data;
+    const imageBinary = converteur(sourceImage);
 
     // Request parameters
     const params = {
@@ -147,7 +148,7 @@ exports.get_emotions = (req, res) => {
 /*
  * Fonction qui lie un nom à un visage
  * @body :
- *      url : url de l'image
+ *      data : l'image en b64
  *      name : nom de la personne
  *
  * @return :
@@ -159,8 +160,9 @@ exports.get_emotions = (req, res) => {
  * PersonGroup:Train Enregistre les personne et sert à les préparer pour le détect
  */
 exports.add_face = function (req, res) {
-    var url = req.body.url;
-    var name = req.body.name;
+    const sourceImage = req.body.data;
+    const imageBinary = converteur(sourceImage);
+    const name = req.body.name;
     const option = {
         uri: face_api_url + '/persongroups/group1/persons',
         body: "{'name': '" + name + "'}",
@@ -176,19 +178,16 @@ exports.add_face = function (req, res) {
         }
         let data = JSON.parse(body);
         var personId = data.personId;
-        console.log("person id");
-        console.log(personId);
         var params = {
             "personId": personId
         };
-        console.log(url);
         const options = {
             uri: face_api_url + '/persongroups/group1/persons/{personId}/persistedFaces?',
             qs: params,
-            body: "{'url': '" + url + "'}",
+            body: imageBinary,
             headers: {
-                'Content-Type': 'application/json',
-                'Ocp-Apim-Subscription-Key': face_api_key
+                'Content-Type': 'application/octet-stream',
+                'Ocp-Apim-Subscription-Key': process.env.FACE_API_KEY
             }
         };
         request.post(options, (error, response, body) => {
@@ -198,8 +197,6 @@ exports.add_face = function (req, res) {
 
             let data2 = JSON.parse(body);
             var persistedId = data2.persistedFaceId;
-            console.log("persisted id");
-            console.log(persistedId);
             res.json(persistedId);
         });
     });
@@ -210,7 +207,7 @@ exports.add_face = function (req, res) {
 /*
  * Fonction qui détecte les personnes enregistrés
  * @body :
- *      url : url de l'image
+ *      data : l'image en b64
  *
  * @return :
  *      -

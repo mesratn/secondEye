@@ -5,6 +5,8 @@ import { Button, Divider } from "react-native-elements";
 import Tts from 'react-native-tts';
 
 import { getTexts } from "../services/Api";
+import { readText } from "../services/Tts";
+import { AppStyle } from "../utils/Styles";
 
 const localStyles = StyleSheet.create({
     container: {
@@ -21,14 +23,27 @@ export default class ResultsAnalysisText extends Component {
     constructor(props) {
         super(props);
 
+        const { navigation } = this.props;
+        const data = navigation.getParam('data', {});
+
         this.state = {
             loading: true,
+            image: data,
             texts: {}
         }
     }
 
     componentDidMount() {
-        getTexts().then((texts) => {
+        const { image } = this.state;
+        const imageURI = `data:${image.type};base64,${image.data}`;
+
+        // calculate image width and height 
+        const screenWidth = Dimensions.get('window').width - (AppStyle.container.padding * 2)
+        const scaleFactor = image.width / screenWidth
+        const imageHeight = image.height / scaleFactor
+        this.setState({ imgWidth: screenWidth, imgHeight: imageHeight })
+
+        getTexts(imageURI).then((texts) => {
             this.setState({
                 loading: false,
                 texts: texts
@@ -50,14 +65,16 @@ export default class ResultsAnalysisText extends Component {
     }
 
     render() {
+        const { image, imgWidth, imgHeight, texts, loading } = this.state
+        const imageURI = `data:${image.type};base64,${image.data}`;
         return (
             <ScrollView contentContainerStyle={localStyles.container}>
 
                 <Text> Résultats de l analyse </Text>
 
                 <Image
-                    style={{ height: 400, width: 400}}
-                    source={{ uri: 'https://i.stack.imgur.com/35SY5.png' }}
+                    style={{ width: imgWidth, height: imgHeight, borderRadius: 50, marginBottom: 15 }}
+                    source={{ uri: imageURI }}
                 />
 
                 <Button

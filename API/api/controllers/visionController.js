@@ -1,6 +1,7 @@
 'use strict';
 
 var request = require('request');
+var converteur = require('../services/b64ToBinary').convertDataURIToBinary;
 
 exports.test_vision = function(req, res) {
   res.json({ message: 'Test Vision OK' });
@@ -9,7 +10,7 @@ exports.test_vision = function(req, res) {
 /*
  * Fonction qui décrit le paysage dans une image
  * @body :
- *      url : url de l'image
+ *      data : l'image en b64
  *
  * @return :
  *      - 400, error
@@ -19,8 +20,8 @@ exports.test_vision = function(req, res) {
  * Vision:Analyze image
 */
 exports.get_landscape = function(req, res) {
-    console.log("je suis dedans landscape");
-    const sourceImageUrl = req.body.url;
+    const sourceImage = req.body.data;
+    const imageBinary = converteur(sourceImage);
     const params = {
         'visualFeatures': 'Categories,Description,Color',
     };

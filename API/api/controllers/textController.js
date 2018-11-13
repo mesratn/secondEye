@@ -1,12 +1,8 @@
 'use strict';
 
-// Clé API TEXT de Microsoft, mais je crois que maintenant c'est inclu dans API VISION
-//var text_api_key = "0ed0b17f35dd4a80b53ba50731668f85";
-
-var vision_api_key = "746202e68e074d51983b4e8e4a95ff7a";
-var vision_api_url = "https://westeurope.api.cognitive.microsoft.com/vision/v2.0/";
 var request = require('request');
 var sleep = require('sleep');
+var converteur = require('../services/b64ToBinary').convertDataURIToBinary;
 
 exports.test_text = function(req, res) {
     res.json({ message: 'Test Text OK' });
@@ -15,7 +11,7 @@ exports.test_text = function(req, res) {
 /*
  * Fonction qui détecte le texte dans une image
  * @body :
- *      url : url de l'image
+ *      data : l'image en b64
  *
  * @return :
  *      - 400, error
@@ -25,7 +21,8 @@ exports.test_text = function(req, res) {
  * Vision:Analyze image
 */
 exports.detect_text = function(req, res) {
-    const sourceImageUrl = req.body.url;
+    const sourceImage = req.body.data;
+    const imageBinary = converteur(sourceImage);
     const params = {
         'visualFeatures': 'Categories',
     };
@@ -58,7 +55,7 @@ exports.detect_text = function(req, res) {
 /*
  * Fonction qui lit le texte dans une image
  * @body :
- *      url : url de l'image
+ *      data : l'image en b64
  *
  * @return :
  *      - 400, error
@@ -70,7 +67,8 @@ exports.detect_text = function(req, res) {
 */
 
 exports.read_text = function(req, res) {
-    const sourceImageUrl = req.body.url;
+    const sourceImage = req.body.data;
+    const imageBinary = converteur(sourceImage);
     const params = {
         'mode': 'Handwritten',
     };

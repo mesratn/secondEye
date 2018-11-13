@@ -5,6 +5,8 @@ import { Button, Divider } from "react-native-elements";
 import Tts from 'react-native-tts';
 
 import { getLanscapes } from "../services/Api";
+import { readText } from "../services/Tts";
+import { AppStyle } from "../utils/Styles";
 
 const localStyles = StyleSheet.create({
 	container: {
@@ -21,14 +23,27 @@ export default class ResultsAnalysisLandscape extends Component {
 	constructor(props){
 		super(props);
 
+		const { navigation } = this.props;
+        const data = navigation.getParam('data', {});
+
 		this.state = {
 			loading: true,
+            image: data,
 			landscapes: {}
 		}
 	}
 
 	ComponentDidMount(){
-		getLanscapes().then((landscapes) => {
+		const { image } = this.state;
+        const imageURI = `data:${image.type};base64,${image.data}`;
+
+        // calculate image width and height 
+        const screenWidth = Dimensions.get('window').width - (AppStyle.container.padding * 2)
+        const scaleFactor = image.width / screenWidth
+        const imageHeight = image.height / scaleFactor
+        this.setState({ imgWidth: screenWidth, imgHeight: imageHeight })
+        
+		getLanscapes(imageURI).then((landscapes) => {
 			this.setState({
 				loading:false,
 				landscapes: landscapes
@@ -57,8 +72,8 @@ export default class ResultsAnalysisLandscape extends Component {
                 <Text> Résultats de l analyse </Text>
 
                 <Image
-                    style={{ height: 400, width: 400}}
-                    source={{ uri: 'https://images.pexels.com/photos/371633/pexels-photo-371633.jpeg?auto=compress&cs=tinysrgb&h=350' }}
+                    style={{ width: imgWidth, height: imgHeight, borderRadius: 50, marginBottom: 15 }}
+                    source={{ uri: imageURI }}
                 />
 
                 <Button

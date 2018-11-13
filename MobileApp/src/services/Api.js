@@ -38,39 +38,51 @@ export function getEmotions(image) {
     });
 }
 
-export function getLandscapes(){
+export function getLandscapes(image){
     return RequestHandler(`${URL}/landscape`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },
         body: qs.stringify({
-            url: 'https://images.pexels.com/photos/371633/pexels-photo-371633.jpeg?auto=compress&cs=tinysrgb&h=350'
+            data: image
         })
     });
 }
 
-export function getTexts(){
+export function getTexts(image){
     return RequestHandler(`$(URL)/read`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },
         body: qs.stringify({
-            url: 'https://i.stack.imgur.com/35SY5.png'
+            data: image
         })
     });
 }
 
-export function saveFace(){
-    return RequestHandler(`$(URL)/add`, {
+export function saveFace(image){
+    return RequestHandler(`$(URL)/face/add`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },
         body: qs.stringify({
-            url :'https://pbs.twimg.com/profile_images/1007439915917938688/ZsxLbPmx_400x400.jpg',
+            data: image,
             name : 'Tom'
+        })
+    });
+}
+
+export function saveFace(image){
+    return RequestHandler(`$(URL)/face/added`, {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: qs.stringify({
+            data: image
         })
     });
 }

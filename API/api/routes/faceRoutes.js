@@ -18,10 +18,10 @@ module.exports = function(app) {
 		.post(face.get_emotions);
 
 	//Route d'ajout de visage'
-	app.route('/add')
+	app.route('/face/add')
 		.post(face.add_face);
 
 	//Route de lecture de visage ajouté
-	app.route('/added_face')
+	app.route('/face/added')
 		.post(face.get_added_face);
 };
