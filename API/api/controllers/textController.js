@@ -29,11 +29,10 @@ exports.detect_text = function(req, res) {
 
     const options = {
         uri: process.env.VISION_API_URL + 'analyze',
-
         qs: params,
-        body: '{"url": "' + sourceImageUrl + '"}',
+        body: imageBinary,
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/octet-stream',
             'Ocp-Apim-Subscription-Key' : process.env.VISION_API_KEY
         }
     };
@@ -76,9 +75,9 @@ exports.read_text = function(req, res) {
     const options = {
         uri: process.env.VISION_API_URL + 'recognizeText',
         qs: params,
-        body: '{"url": "' + sourceImageUrl + '"}',
+        body: imageBinary,
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/octet-stream',
             'Ocp-Apim-Subscription-Key' : process.env.VISION_API_KEY
         }
     };

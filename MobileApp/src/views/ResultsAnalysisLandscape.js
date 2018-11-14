@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { ScrollView, View, StyleSheet, Text, Image } from 'react-native';
+import { ScrollView, View, StyleSheet, Text, Image, Dimensions } from 'react-native';
 import { Button, Divider } from "react-native-elements";
 import Tts from 'react-native-tts';
 
@@ -20,11 +20,13 @@ export default class ResultsAnalysisLandscape extends Component {
 		title: 'RESULTATS DE LA DETECTION',
 	};
 
-	constructor(props){
-		super(props);
+	constructor(props) {
+        super(props);
 
-		const { navigation } = this.props;
+        const { navigation } = this.props;
         const data = navigation.getParam('data', {});
+
+		alert(data.type);
 
 		this.state = {
 			loading: true,
@@ -66,6 +68,9 @@ export default class ResultsAnalysisLandscape extends Component {
 	}
 
 	render(){
+		const { image, imgWidth, imgHeight, loading } = this.state;
+		const imageURI = `data:${image.type};base64,${image.data}`;
+
 		return(
 			<ScrollView contentContainerStyle={localStyles.container}>
 
@@ -76,10 +81,14 @@ export default class ResultsAnalysisLandscape extends Component {
                     source={{ uri: imageURI }}
                 />
 
+				{/* <Text key={index} style={AppStyle.instructions}>
+                            {person.message}
+                </Text> */}
+
                 <Button
                     raised
-                    loading={this.state.loading}
-                    disabled={this.state.loading}
+                    loading={loading}
+                    disabled={loading}
                     borderRadius={50}
                     backgroundColor="#7289DA"
                     icon={{ name: 'play-arrow' }}

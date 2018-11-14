@@ -1,5 +1,5 @@
 import qs from "qs";
-const URL = 'http://192.168.0.104:3000';
+const URL = 'http://192.168.0.103:3000';
 
 // OTHERS FUNCTIONS
 
@@ -75,8 +75,8 @@ export function saveFace(image){
     });
 }
 
-export function saveFace(image){
-    return RequestHandler(`$(URL)/face/added`, {
+export function getFace(image){
+    return RequestHandler(`${URL}/face/added`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'

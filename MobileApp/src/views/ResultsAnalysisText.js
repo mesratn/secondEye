@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { ScrollView, View, StyleSheet, Text, Image } from 'react-native';
+import { ScrollView, View, StyleSheet, Text, Image, Dimensions } from 'react-native';
 import { Button, Divider } from "react-native-elements";
 import Tts from 'react-native-tts';
 
@@ -29,7 +29,7 @@ export default class ResultsAnalysisText extends Component {
         this.state = {
             loading: true,
             image: data,
-            texts: {}
+            texts: ""
         }
     }
 
@@ -38,15 +38,15 @@ export default class ResultsAnalysisText extends Component {
         const imageURI = `data:${image.type};base64,${image.data}`;
 
         // calculate image width and height 
-        const screenWidth = Dimensions.get('window').width - (AppStyle.container.padding * 2)
-        const scaleFactor = image.width / screenWidth
-        const imageHeight = image.height / scaleFactor
-        this.setState({ imgWidth: screenWidth, imgHeight: imageHeight })
+        const screenWidth = Dimensions.get('window').width - (AppStyle.container.padding * 2);
+        const scaleFactor = image.width / screenWidth;
+        const imageHeight = image.height / scaleFactor;
+        this.setState({ imgWidth: screenWidth, imgHeight: imageHeight });
 
         getTexts(imageURI).then((texts) => {
             this.setState({
                 loading: false,
-                texts: texts
+                texts: texts.message
             });
         }).catch((err) => alert(err + ""));
     }
@@ -55,7 +55,7 @@ export default class ResultsAnalysisText extends Component {
         const self = this.state;
         Tts.setDefaultLanguage('en-US');
         Tts.getInitStatus().then(() => {
-            Tts.speak(self.texts.message, {
+            Tts.speak(self.texts, {
                 androidParams: {
                     KEY_PARAM_PAN: -1,
                     KEY_PARAM_VOLUME: 1,
@@ -65,27 +65,31 @@ export default class ResultsAnalysisText extends Component {
     }
 
     render() {
-        const { image, imgWidth, imgHeight, texts, loading } = this.state
+        const { image, imgWidth, imgHeight, texts, loading } = this.state;
         const imageURI = `data:${image.type};base64,${image.data}`;
         return (
             <ScrollView contentContainerStyle={localStyles.container}>
 
-                <Text> Résultats de l analyse </Text>
+                <Text style={AppStyle.title}> TEXT </Text>
 
                 <Image
                     style={{ width: imgWidth, height: imgHeight, borderRadius: 50, marginBottom: 15 }}
                     source={{ uri: imageURI }}
                 />
 
+                <Text style={AppStyle.instructions}>
+                    {texts}
+                </Text>
+
                 <Button
                     raised
-                    loading={this.state.loading}
-                    disabled={this.state.loading}
+                    loading={loading}
+                    disabled={loading}
                     borderRadius={50}
                     backgroundColor="#7289DA"
                     icon={{ name: 'play-arrow' }}
                     title='LECTURE DES DONNÉES'
-                    containerViewStyle={{ width: '100%' }}
+                    containerViewStyle={AppStyle.button}
                     onPress={() => this.onStartReading()}
                 />
 

@@ -34,10 +34,10 @@ export default class ResultsAnalysisFace extends Component {
         const imageURI = `data:${image.type};base64,${image.data}`;
 
         // calculate image width and height 
-        const screenWidth = Dimensions.get('window').width - (AppStyle.container.padding * 2)
-        const scaleFactor = image.width / screenWidth
-        const imageHeight = image.height / scaleFactor
-        this.setState({ imgWidth: screenWidth, imgHeight: imageHeight })
+        const screenWidth = Dimensions.get('window').width - (AppStyle.container.padding * 2);
+        const scaleFactor = image.width / screenWidth;
+        const imageHeight = image.height / scaleFactor;
+        this.setState({ imgWidth: screenWidth, imgHeight: imageHeight });
 
         getEmotions(imageURI).then((emotions) => {
             this.setState({
