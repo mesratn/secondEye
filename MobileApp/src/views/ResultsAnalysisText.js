@@ -67,6 +67,7 @@ export default class ResultsAnalysisText extends Component {
     render() {
         const { image, imgWidth, imgHeight, texts, loading } = this.state;
         const imageURI = `data:${image.type};base64,${image.data}`;
+        
         return (
             <ScrollView contentContainerStyle={localStyles.container}>
 

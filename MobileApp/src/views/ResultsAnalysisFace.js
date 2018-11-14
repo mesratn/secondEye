@@ -50,6 +50,9 @@ export default class ResultsAnalysisFace extends Component {
     onStartReading(c = 0) {
         const { emotions } = this.state;
 
+        if (!emotions.faces[0])
+            return false;
+
         if (c == 0) this.setState({ reading: true });
 
         readText(emotions.faces[c].message).then(() => {

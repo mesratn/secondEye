@@ -4,7 +4,7 @@ import { ScrollView, View, StyleSheet, Text, Image, Dimensions } from 'react-nat
 import { Button, Divider } from "react-native-elements";
 import Tts from 'react-native-tts';
 
-import { getLanscapes } from "../services/Api";
+import { getLandscapes } from "../services/Api";
 import { readText } from "../services/Tts";
 import { AppStyle } from "../utils/Styles";
 
@@ -26,16 +26,14 @@ export default class ResultsAnalysisLandscape extends Component {
         const { navigation } = this.props;
         const data = navigation.getParam('data', {});
 
-		alert(data.type);
-
 		this.state = {
 			loading: true,
             image: data,
-			landscapes: {}
+			landscapes: []
 		}
 	}
 
-	ComponentDidMount(){
+	componentDidMount() {
 		const { image } = this.state;
         const imageURI = `data:${image.type};base64,${image.data}`;
 
@@ -43,47 +41,56 @@ export default class ResultsAnalysisLandscape extends Component {
         const screenWidth = Dimensions.get('window').width - (AppStyle.container.padding * 2)
         const scaleFactor = image.width / screenWidth
         const imageHeight = image.height / scaleFactor
-        this.setState({ imgWidth: screenWidth, imgHeight: imageHeight })
-        
-		getLanscapes(imageURI).then((landscapes) => {
+		this.setState({ imgWidth: screenWidth, imgHeight: imageHeight })
+		
+		getLandscapes(imageURI).then((landscapes) => {
 			this.setState({
 				loading:false,
-				landscapes: landscapes
+				landscapes: landscapes.landscapes
 			});
 		}).catch((err) => alert(err + ""));
 	}
 
-	onStartReading(){
-		const self = this.state;
-		Tts.setDefaultLanguage('en-US');
-		Tts.getInitStatus().then(() => {
-			Tts.speak(self.landscapes.message, {
-				androidParams: {
-					KEY_PARAM_PAN: -1,
-					KEY_PARAM_VOLUME: 1,
-					KEY_PARAM_STREAM: 'STREAM_MUSIC'
-				}
-			});
-		});
-	}
+	onStartReading(c = 0) {
+		const { landscapes } = this.state;
+
+        if (!landscapes[0])
+            return false;
+
+        if (c == 0) this.setState({ reading: true });
+
+        readText(landscapes[c].message).then(() => {
+            if (c < (landscapes.length) - 1)
+                this.onStartReading(c + 1);
+            else
+                this.setState({ reading: false });
+        }, () => {
+            alert('Error when starting TTS.');
+            this.setState({ reading: false });
+        });
+    }
 
 	render(){
-		const { image, imgWidth, imgHeight, loading } = this.state;
-		const imageURI = `data:${image.type};base64,${image.data}`;
+		const { image, imgWidth, imgHeight, landscapes, loading } = this.state;
+        const imageURI = `data:${image.type};base64,${image.data}`;
 
 		return(
 			<ScrollView contentContainerStyle={localStyles.container}>
 
-                <Text> Résultats de l analyse </Text>
+                <Text style={AppStyle.title}> LANDSCAPES </Text>
 
                 <Image
                     style={{ width: imgWidth, height: imgHeight, borderRadius: 50, marginBottom: 15 }}
                     source={{ uri: imageURI }}
                 />
 
-				{/* <Text key={index} style={AppStyle.instructions}>
-                            {person.message}
-                </Text> */}
+				{(landscapes || []).map((landscape, index) => {
+                    return (
+                        <Text key={index} style={AppStyle.instructions}>
+                            {landscape.message}
+                        </Text>
+                    );
+                })}
 
                 <Button
                     raised
@@ -93,8 +100,8 @@ export default class ResultsAnalysisLandscape extends Component {
                     backgroundColor="#7289DA"
                     icon={{ name: 'play-arrow' }}
                     title='LECTURE DES DONNÉES'
-                    containerViewStyle={{ width: '100%' }}
-                    onPress={() => this.onStartReading()}
+                    containerViewStyle={AppStyle.button}
+                    onPress={() => this.onStartReading(0)}
                 />
 
             </ScrollView>

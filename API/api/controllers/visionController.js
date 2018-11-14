@@ -29,13 +29,13 @@ exports.get_landscape = function(req, res) {
     const options = {
         uri: process.env.VISION_API_URL + '/analyze',
         qs: params,
-        body: '{"url": "' + sourceImageUrl + '"}',
+        body: imageBinary,
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/octet-stream',
             'Ocp-Apim-Subscription-Key' : process.env.VISION_API_KEY
         }
     };
-
+    
     request.post(options, (error, response, body) => {
         if (error) {
             res.send(error, 400);

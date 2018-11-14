@@ -164,11 +164,11 @@ exports.add_face = function (req, res) {
     const imageBinary = converteur(sourceImage);
     const name = req.body.name;
     const option = {
-        uri: face_api_url + '/persongroups/group1/persons',
+        uri: process.env.FACE_API_URL + '/persongroups/group1/persons',
         body: "{'name': '" + name + "'}",
         headers: {
             'Content-Type': 'application/json',
-            'Ocp-Apim-Subscription-Key': face_api_key
+            'Ocp-Apim-Subscription-Key': process.env.FACE_API_KEY
         }
     };
 
@@ -182,7 +182,7 @@ exports.add_face = function (req, res) {
             "personId": personId
         };
         const options = {
-            uri: face_api_url + '/persongroups/group1/persons/{personId}/persistedFaces?',
+            uri: process.env.FACE_API_URL + '/persongroups/group1/persons/{personId}/persistedFaces?',
             qs: params,
             body: imageBinary,
             headers: {
@@ -200,8 +200,6 @@ exports.add_face = function (req, res) {
             res.json(persistedId);
         });
     });
-
-
 };
 
 /*
