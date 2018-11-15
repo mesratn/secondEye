@@ -4,7 +4,7 @@
   "description": "API for GPE Project : Second Eye",
   "main": "index.js",
   "scripts": {
-    "test": "mocha server.js",
+    "test": "mocha tests/detections --exit",
     "start": "nodemon server.js"
   },
   "repository": {
@@ -25,7 +25,11 @@
   },
   "homepage": "https://github.com/mesratn/secondEye#readme",
   "devDependencies": {
-    "nodemon": "^1.18.4"
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "mocha": "^2.4.5",
+    "nodemon": "^1.18.4",
+    "uri-js": "^4.2.2"
   },
   "dependencies": {
     "ajax-request": "^1.2.3",

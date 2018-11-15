@@ -4,8 +4,11 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Button, Divider } from "react-native-elements";
 import Modal from "react-native-modal";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+import ImageResizer from 'react-native-image-resizer';
 import Voice from 'react-native-voice';
 import { VoiceBar } from '../components/VoiceBar';
+
+const RNFS = require("react-native-fs");
 
 import { AppStyle } from "../utils/Styles";
 
@@ -79,9 +82,20 @@ export default class PhotoSelector extends Component {
             alert(JSON.stringify(response.error));
         else {
             this.setState({ modalVisible: false }, () => {
-                this.props.navigation.navigate('DetectionSelectorView', {
-                    data: response
-                });
+                ImageResizer.createResizedImage(response.uri, response.width, response.height, "JPEG", 30, 0, null).then((resized) => {
+                    RNFS.readFile(resized.path, "base64").then(data => {
+                        response['data'] = data;
+                        response['fileName'] = resized.name;
+                        response['fileSize'] = resized.size;
+                        response['path'] = resized.path;
+                        response['uri'] = resized.uri;
+                        response['type'] = "image/jpeg";
+
+                        this.props.navigation.navigate('DetectionSelectorView', {
+                            data: response
+                        });
+                    });
+                })
             });
         }
     }

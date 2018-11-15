@@ -4,6 +4,8 @@ ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidMa
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
+MERGED from [:react-native-fs] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-fs/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-13:12
+MERGED from [:react-native-image-resizer] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-image-resizer/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-voice] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-voice/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-16:12
 MERGED from [:react-native-tts] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-tts/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-vector-icons] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-11:12
@@ -63,6 +65,8 @@ ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidMa
 		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:7:22-62
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:8:5-80
+MERGED from [:react-native-fs] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-fs/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:11:5-81
+MERGED from [:react-native-fs] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-fs/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:11:5-81
 	android:name
 		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:8:22-78
 application
@@ -133,6 +137,10 @@ uses-sdk
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
+MERGED from [:react-native-fs] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-fs/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-fs] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-fs/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-image-resizer] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-image-resizer/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-image-resizer] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-image-resizer/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-voice] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-voice/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:8:5-11:54
 MERGED from [:react-native-voice] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-voice/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:8:5-11:54
 MERGED from [:react-native-tts] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-tts/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41

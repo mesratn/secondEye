@@ -4,6 +4,8 @@
 
 # node.js
 #
+api/node_modules/
+MobileApp/node_modules/
 node_modules/
 npm-debug.log
 yarn-error.log

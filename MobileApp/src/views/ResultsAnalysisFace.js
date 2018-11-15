@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { ScrollView, Text, Image, Dimensions } from 'react-native';
 import { Button, Divider, FormLabel, FormInput } from "react-native-elements";
 
-import { getEmotions } from "../services/Api";
+import { getEmotions, saveFace } from "../services/Api";
 import { readText } from "../services/Tts";
 import { AppStyle } from "../utils/Styles";
 
@@ -67,7 +67,9 @@ export default class ResultsAnalysisFace extends Component {
     }
 
     onStartSending() {
-        saveFace().then((returnSaveFace) => {
+        const { image, name } = this.state;
+
+        saveFace(image, name).then((returnSaveFace) => {
             this.setState({
                 save: returnSaveFace
             });

@@ -3,6 +3,8 @@ package com.gpeetna;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.rnfs.RNFSPackage;
+import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import com.wenkesj.voice.VoicePackage;
 import net.no_mad.tts.TextToSpeechPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -27,6 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNFSPackage(),
+            new ImageResizerPackage(),
             new VoicePackage(),
             new TextToSpeechPackage(),
             new VectorIconsPackage(),

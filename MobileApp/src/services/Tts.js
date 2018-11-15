@@ -16,6 +16,7 @@ Tts.setDucking(true);
 
 export const readText = (message) => {
     return new Promise((resolve, reject) => {
+        console.log("INIT STATUS CHECK");
         Tts.getInitStatus().then(() => {
             Tts.speak(message, options);
 

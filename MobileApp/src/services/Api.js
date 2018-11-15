@@ -62,7 +62,7 @@ export function getTexts(image){
     });
 }
 
-export function saveFace(image){
+export function saveFace(image, name){
     return RequestHandler(`${URL}/face/add`, {
         method: 'POST',
         headers:{
@@ -70,7 +70,7 @@ export function saveFace(image){
         },
         body: qs.stringify({
             data: image,
-            name : 'Tom'
+            name : name
         })
     });
 }
