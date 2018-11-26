@@ -109,7 +109,10 @@ exports.get_emotions = (req, res) => {
 
     // Perform the REST API call.
     request.post(options, (error, response, body) => {
-        if (error) { res.send(error); return; }
+        if (error) {
+            res.send(error, 400);
+            return;
+        }
 
         const data = JSON.parse(body);
         const analyse = {
@@ -216,22 +219,76 @@ exports.add_face = function (req, res) {
  * PersonGroup Person:Get (Envoie le personID et récupère le name)
  */
 exports.get_added_face = function (req, res) {
-    const options = {
-        uri: face_api_url + 'persongroups/group1/persons/7751faf5-781f-485d-b454-341b165bb4e7',
+    const sourceImage = req.body.data;
+    const imageBinary = converteur(sourceImage);
+
+    const params = {
+        "returnFaceId": "true",
+        "returnFaceLandmarks": "false"
+    };
+
+    //Request options
+    const getFacesID = {
+        uri: process.env.FACE_API_URL + '/detect',
+        qs: params,
+        body: imageBinary,
         headers: {
-            'Content-Type': 'application/json',
-            'Ocp-Apim-Subscription-Key': face_api_key
+            'Content-Type': 'application/octet-stream',
+            'Ocp-Apim-Subscription-Key': process.env.FACE_API_KEY
         }
     };
-    request.get(options, (error, response, body) => {
+
+    request.post(getFacesID, (error, response, body) => {
         if (error) {
-            res.send(error);
+            res.status(400).send(error);
+            return;
         }
-        let data = JSON.parse(body);
-        console.log(data.name);
-        res.json({
-            message: "The name is " + data.name + " ."
-        })
+
+        const facesID = JSON.parse(body);
+        const IDs = facesID.map((f) => f.faceId);
+
+        const getPersonsID = {
+            uri: process.env.FACE_API_URL + '/identify',
+            body: JSON.stringify({
+                personGroupId: 'group1',
+                faceIds: IDs
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': process.env.FACE_API_KEY
+            }
+        };
+
+        request.post(getPersonsID, (error, response, body) => {
+            if (error) {
+                res.status(400).send(error);
+                return;
+            }
+
+            const personsID = JSON.parse(body);
+            const savedIDs = personsID.map((p) => {
+                if (p.candidates && p.candidates.length > 0)
+                    return p.candidates[0].personId
+            });
+
+            const getName = {
+                uri: process.env.FACE_API_URL  + `persongroups/group1/persons/${savedIDs[0]}`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Ocp-Apim-Subscription-Key': process.env.FACE_API_KEY
+                }
+            };
+
+            request.get(getName, (error, response, body) => {
+                if (error) {
+                    res.status(400).send(error);
+                    return;
+                }
+
+                res.send(JSON.parse(body));
+            });
+
+        });
 
     });
 };
