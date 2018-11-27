@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
-INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
-INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
-INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
+ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-30:12
+INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-30:12
+INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-30:12
+INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-30:12
 MERGED from [:react-native-fs] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-fs/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-13:12
 MERGED from [:react-native-image-resizer] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-image-resizer/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-voice] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-voice/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-16:12
@@ -30,20 +30,20 @@ MERGED from [com.android.support:support-core-utils:26.1.0] /home/quentin/.gradl
 MERGED from [com.android.support:support-core-ui:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/2fabda6a32963b3a8250d8bf81a88616/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/1959ac39369c2f3d6748b9c7c78fe0a6/AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/c92878d55cb7da36d2f27624b0e5cd75/AndroidManifest.xml:17:1-30:12
-INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
-INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
-INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
+INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-30:12
+INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-30:12
+INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-30:12
 	package
 		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:2:5-26
 		INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
 		INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
+		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-30:12
 		INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12
+		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-30:12
 		INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:11-69
@@ -70,7 +70,7 @@ MERGED from [:react-native-fs] /home/quentin/ETNA/secondEye/MobileApp/node_modul
 	android:name
 		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:8:22-78
 application
-ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:10:5-27:19
+ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:10:5-28:19
 MERGED from [:react-native-image-picker] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:11:5-21:19
 MERGED from [:react-native-image-picker] /home/quentin/ETNA/secondEye/MobileApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:11:5-21:19
 MERGED from [com.facebook.react:react-native:0.56.1] /home/quentin/.gradle/caches/transforms-1/files-1.1/react-native-0.56.1.aar/28af875632727a2c28279ce610d03976/AndroidManifest.xml:13:5-20
@@ -110,29 +110,31 @@ MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/quentin/.gradle/caches/
 	android:name
 		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:11:7-38
 activity#com.gpeetna.MainActivity
-ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:16:7-25:18
+ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:16:7-26:18
+	android:screenOrientation
+		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:20:9-45
 	android:label
 		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:18:9-41
 	android:windowSoftInputMode
-		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:20:9-51
+		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:21:9-51
 	android:configChanges
 		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:19:9-79
 	android:name
 		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:17:9-37
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:21:9-24:25
+ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:22:9-25:25
 action#android.intent.action.MAIN
-ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:22:13-65
+ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:23:13-65
 	android:name
-		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:22:21-62
+		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:23:21-62
 category#android.intent.category.LAUNCHER
-ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:23:13-73
+ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:24:13-73
 	android:name
-		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:23:23-70
+		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:24:23-70
 activity#com.facebook.react.devsupport.DevSettingsActivity
-ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:26:7-84
+ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:27:7-84
 	android:name
-		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:26:17-81
+		ADDED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:27:17-81
 uses-sdk
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml
@@ -242,9 +244,9 @@ MERGED from [com.android.support:support-compat:26.1.0] /home/quentin/.gradle/ca
 	android:name
 		ADDED from [com.android.support:appcompat-v7:26.1.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/88abf14f6654b31581d604b526ff73f2/AndroidManifest.xml:27:13-51
 uses-permission#android.permission.READ_PHONE_STATE
-IMPLIED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
+IMPLIED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-30:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-IMPLIED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-29:12 reason: org.webkit.android_jsc requested WRITE_EXTERNAL_STORAGE
+IMPLIED from /home/quentin/ETNA/secondEye/MobileApp/android/app/src/main/AndroidManifest.xml:1:1-30:12 reason: org.webkit.android_jsc requested WRITE_EXTERNAL_STORAGE
 meta-data#android.arch.lifecycle.VERSION
 ADDED from [android.arch.lifecycle:runtime:1.0.0] /home/quentin/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/c92878d55cb7da36d2f27624b0e5cd75/AndroidManifest.xml:25:9-27:47
 	android:value
