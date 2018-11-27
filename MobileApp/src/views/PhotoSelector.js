@@ -121,6 +121,7 @@ export default class PhotoSelector extends Component {
         return (
             <View style={localStyles.container}>
                 <NavigationEvents onDidFocus={e => this.setVoiceHandlers()} />
+                
                 <Modal 
                     isVisible={this.state.modalVisible}
                     style={AppStyle.bottomModal}

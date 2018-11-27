@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { ScrollView, Text, Image, Dimensions } from 'react-native';
+import { View, ScrollView, StyleSheet, Text, Image, Dimensions } from 'react-native';
 import { Button, Divider, FormLabel, FormInput } from "react-native-elements";
-
+import { VoiceBar } from '../components/VoiceBar';
 import { getEmotions, saveFace } from "../services/Api";
 import { readText } from "../services/Tts";
 import { AppStyle } from "../utils/Styles";
@@ -25,7 +25,12 @@ export default class ResultsAnalysisFace extends Component {
             name: '',
             returnSaveFace: {},
             image: data,
-            reading: false
+            reading: false,
+            width: Dimensions.get('window').width,
+            voice: {
+                enable: false,
+                results: []
+            }
         }
     }
 
@@ -33,11 +38,9 @@ export default class ResultsAnalysisFace extends Component {
         const { image } = this.state;
         const imageURI = `data:${image.type};base64,${image.data}`;
 
-        // calculate image width and height 
-        const screenWidth = Dimensions.get('window').width - (AppStyle.container.padding * 2);
-        const scaleFactor = image.width / screenWidth;
-        const imageHeight = image.height / scaleFactor;
-        this.setState({ imgWidth: screenWidth, imgHeight: imageHeight });
+        // Width gesture
+        this.onDimensionsChange();
+        Dimensions.addEventListener('change', this.onDimensionsChange.bind(this));
 
         getEmotions(imageURI).then((emotions) => {
             this.setState({
@@ -45,6 +48,23 @@ export default class ResultsAnalysisFace extends Component {
                 emotions: emotions
             });
         }).catch((err) => alert(err + ""));
+    }
+
+
+    componentWillUnmount() {
+        Dimensions.removeEventListener('change', this.onDimensionsChange);
+    }
+
+    onDimensionsChange() {
+        const { image, width } = this.state;
+        const imageURI = `data:${image.type};base64,${image.data}`;
+
+        // calculate image width and height 
+        const screenWidth = Dimensions.get('window').width - (AppStyle.container.padding * 2);
+        const scaleFactor = image.width / screenWidth;
+        const imageHeight = image.height / scaleFactor;
+
+        this.setState({ width: Dimensions.get('window').width, imgWidth: screenWidth, imgHeight: imageHeight });
     }
 
     onStartReading(c = 0) {
@@ -78,60 +98,79 @@ export default class ResultsAnalysisFace extends Component {
     }
 
     render() {
-        const { image, imgWidth, imgHeight, emotions, name, loading } = this.state
+        const { image, imgWidth, imgHeight, emotions, name, loading, voice, width } = this.state
         const imageURI = `data:${image.type};base64,${image.data}`;
 
         return (
-            <ScrollView contentContainerStyle={AppStyle.container}>
+            <View style={localStyles.container}>
+            
+                <ScrollView contentContainerStyle={[AppStyle.container, { width: width, maxWidth: width, paddingBottom: 100 }]}>
 
-                <Text style={AppStyle.title}> ÉMOTIONS </Text>
+                    <Text style={AppStyle.title}> ÉMOTIONS </Text>
 
-                <Image
-                    style={{ width: imgWidth, height: imgHeight, borderRadius: 50, marginBottom: 15 }}
-                    source={{ uri: imageURI }}
+                    <Image
+                        style={{ width: imgWidth, height: imgHeight, borderRadius: 50, marginBottom: 15 }}
+                        source={{ uri: imageURI }}
+                    />
+
+                    {(emotions.faces || []).map((person, index) => {
+                        return (
+                            <Text key={index} style={AppStyle.instructions}>
+                                {person.message}
+                            </Text>
+                        );
+                    })}
+
+                    <Button
+                        raised
+                        loading={loading}
+                        disabled={loading}
+                        borderRadius={50}
+                        backgroundColor="#7289DA"
+                        icon={{ name: 'play-arrow' }}
+                        title='LECTURE DES DONNÉES'
+                        containerViewStyle={AppStyle.button}
+                        onPress={() => this.onStartReading(0)}
+                    />
+
+                    <Divider style={AppStyle.divider}/>
+
+                    <FormLabel>PRÉNOM</FormLabel>
+                    <FormInput
+                        containerStyle={AppStyle.input}
+                        value={name}
+                        onChangeText={(name) => this.setState({ name: name })}    
+                    />
+
+                    <Button
+                        raised
+                        disabled={name && name != '' ? false : true}
+                        borderRadius={50}
+                        backgroundColor="#7289DA"
+                        icon={{ name: 'save' }}
+                        title='ENREGISTRER LE VISAGE ?'
+                        containerViewStyle={AppStyle.button}
+                        onPress={() => this.onStartSending()}
+                    />
+
+                </ScrollView>
+
+                <VoiceBar
+                    active={voice.enable}
+                    commands={[]}
+                    onPressButton={() => alert('pressed')}
                 />
 
-                {(emotions.faces || []).map((person, index) => {
-                    return (
-                        <Text key={index} style={AppStyle.instructions}>
-                            {person.message}
-                        </Text>
-                    );
-                })}
-
-                <Button
-                    raised
-                    loading={loading}
-                    disabled={loading}
-                    borderRadius={50}
-                    backgroundColor="#7289DA"
-                    icon={{ name: 'play-arrow' }}
-                    title='LECTURE DES DONNÉES'
-                    containerViewStyle={AppStyle.button}
-                    onPress={() => this.onStartReading(0)}
-                />
-
-                <Divider style={AppStyle.divider}/>
-
-                <FormLabel>PRÉNOM</FormLabel>
-                <FormInput
-                    containerStyle={AppStyle.input}
-                    value={name}
-                    onChangeText={(name) => this.setState({ name: name })}    
-                />
-
-                <Button
-                    raised
-                    disabled={name && name != '' ? false : true}
-                    borderRadius={50}
-                    backgroundColor="#7289DA"
-                    icon={{ name: 'save' }}
-                    title='ENREGISTRER LE VISAGE ?'
-                    containerViewStyle={AppStyle.button}
-                    onPress={() => this.onStartSending()}
-                />
-
-            </ScrollView>
+            </View>
         );
     }
 }
+
+const localStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColor: '#F5FCFF'
+    }
+});

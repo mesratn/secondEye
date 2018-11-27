@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import { ScrollView, View, StyleSheet, Text } from 'react-native';
 import { Button, Divider } from "react-native-elements";
-
 import Voice from 'react-native-voice';
+import { NavigationEvents } from 'react-navigation';
 import { VoiceBar } from '../components/VoiceBar';
 
 import { AppStyle } from "../utils/Styles";
@@ -31,6 +31,12 @@ export default class DetectionSelector extends Component {
 
     componentWillUnmount() {
         Voice.destroy().then(Voice.removeAllListeners);
+    }
+
+    setVoiceHandlers() {
+        Voice.removeAllListeners();
+        Voice.onSpeechResults = this.onSpeechResults.bind(this);
+        this.onSpeechSwitch = this.onSpeechSwitch.bind(this);
     }
 
     async onSpeechSwitch() {
@@ -73,6 +79,8 @@ export default class DetectionSelector extends Component {
 
         return (
             <View style={localStyles.container}>
+                <NavigationEvents onDidFocus={e => this.setVoiceHandlers()} />
+
                 <ScrollView contentContainerStyle={AppStyle.container}>
 
                     <Text style={AppStyle.title}> ÉMOTIONS </Text>
@@ -128,6 +136,7 @@ export default class DetectionSelector extends Component {
                         onPress={() => this.navigateTo('ResultsAnalysisLandscapeView')}
                     />
                 </ScrollView>
+                
                 <VoiceBar
                     active={voice.enable}
                     commands={['Visage', 'Texte', 'Paysage']}
