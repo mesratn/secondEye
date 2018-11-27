@@ -26,7 +26,7 @@ export default class DetectionSelector extends Component {
 
         // Bind Voice
         Voice.onSpeechResults = this.onSpeechResults.bind(this);
-        Voice.onSpeechResults = this.onSpeechResults.bind(this);
+        this.onSpeechSwitch = this.onSpeechSwitch.bind(this);
     }
 
     componentWillUnmount() {

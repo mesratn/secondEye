@@ -7,6 +7,7 @@ import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import ImageResizer from 'react-native-image-resizer';
 import Voice from 'react-native-voice';
 import { VoiceBar } from '../components/VoiceBar';
+import { NavigationEvents } from 'react-navigation';
 
 const RNFS = require("react-native-fs");
 
@@ -40,7 +41,7 @@ export default class PhotoSelector extends Component {
 
         // Bind Voice
         Voice.onSpeechResults = this.onSpeechResults.bind(this);
-        Voice.onSpeechResults = this.onSpeechResults.bind(this);
+        this.onSpeechSwitch = this.onSpeechSwitch.bind(this);
     }
 
     componentDidMount() { }
@@ -49,8 +50,14 @@ export default class PhotoSelector extends Component {
         Voice.destroy().then(Voice.removeAllListeners);
     }
 
+    setVoiceHandlers() {
+        Voice.removeAllListeners();
+        Voice.onSpeechResults = this.onSpeechResults.bind(this);
+        this.onSpeechSwitch = this.onSpeechSwitch.bind(this);
+    }
+
     async onSpeechSwitch() {
-        const self = this.state;
+        const self = {...this.state};
         self.voice.enable = !self.voice.enable;
         if (self.voice.enable == true)
             await Voice.start('fr-FR');
@@ -58,7 +65,7 @@ export default class PhotoSelector extends Component {
             await Voice.stop();
             self.voice.results = [];
         }
-        this.setState(self);
+        await this.setState(self);
     }
 
     onSpeechResults(e) {
@@ -113,6 +120,7 @@ export default class PhotoSelector extends Component {
 
         return (
             <View style={localStyles.container}>
+                <NavigationEvents onDidFocus={e => this.setVoiceHandlers()} />
                 <Modal 
                     isVisible={this.state.modalVisible}
                     style={AppStyle.bottomModal}
