@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import { View, StyleSheet } from 'react-native';
-import { Button } from "react-native-elements";
+import { View, StyleSheet, Text } from 'react-native';
+import { Button, Card } from "react-native-elements";
 import Voice from 'react-native-voice';
 import Pulse from 'react-native-pulse';
 
@@ -27,6 +27,14 @@ export class VoiceBar extends Component {
 
         return (
             <View style={[localStyles.container]}>
+                {this.props.commands && 
+                <View style={{ position: "absolute", right: 85, bottom: 8 }}>
+                    <Card containerStyle={{ borderRadius: 50 }}>
+                        <Text style={{ fontWeight: '500' }}>COMMANDES:</Text>
+                        <Text>{this.props.commands.join(', ').toUpperCase()}</Text>
+                    </Card>
+                </View>}
+
                 <PulseView />
 
                 <Button

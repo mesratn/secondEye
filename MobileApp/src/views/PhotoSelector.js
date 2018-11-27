@@ -63,7 +63,15 @@ export default class PhotoSelector extends Component {
 
     onSpeechResults(e) {
         this.onSpeechSwitch().then(() => {
-            alert(JSON.stringify(e));
+            if (e.value && e.value.indexOf('photo') >= 0) {
+                this.handleClickCamera();
+            }
+            else if (e.value && e.value.indexOf('galerie') >= 0) {
+                this.handleClickLibrary();
+            }
+            else {
+                alert('Commande non reconnue.');
+            }
         });
     }
 
@@ -159,6 +167,7 @@ export default class PhotoSelector extends Component {
                 
                 <VoiceBar 
                     active={voice.enable}
+                    commands={['photo', 'galerie']}
                     onPressButton={() => this.onSpeechSwitch()}
                 />
 
