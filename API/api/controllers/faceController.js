@@ -46,7 +46,7 @@ exports.get_faces = function (req, res) {
     // Perform the REST API call.
     request.post(options, (error, response, body) => {
         if (error) {
-            res.send(error, 400);
+            res.status(400).send(error);
         }
         let data = JSON.parse(body);
         var faceCount = '"I detect ' + data.length + ' faces!"';
@@ -110,8 +110,7 @@ exports.get_emotions = (req, res) => {
     // Perform the REST API call.
     request.post(options, (error, response, body) => {
         if (error) {
-            res.send(error, 400);
-            return;
+            res.status(400).send(error);
         }
 
         const data = JSON.parse(body);
@@ -177,7 +176,7 @@ exports.add_face = function (req, res) {
 
     request.post(option, (error, response, body) => {
         if (error) {
-            res.send(error);
+            res.status(400).send(error);
         }
         let data = JSON.parse(body);
         var personId = data.personId;
@@ -185,7 +184,7 @@ exports.add_face = function (req, res) {
             "personId": personId
         };
         const options = {
-            uri: process.env.FACE_API_URL + '/persongroups/group1/persons/{personId}/persistedFaces?',
+            uri: process.env.FACE_API_URL + '/persongroups/group1/persons/${personId}/persistedFaces?',
             qs: params,
             body: imageBinary,
             headers: {
@@ -195,12 +194,26 @@ exports.add_face = function (req, res) {
         };
         request.post(options, (error, response, body) => {
             if (error) {
-                res.send(error);
+                res.status(400).send(error);
             }
 
             let data2 = JSON.parse(body);
             var persistedId = data2.persistedFaceId;
-            res.json(persistedId);
+
+            const train_options = {
+                uri: process.env.FACE_API_URL + '/persongroups/group1/train',
+                body: '',
+                headers: {
+                    'Ocp-Apim-Subscription-Key': process.env.FACE_API_KEY
+                }
+            };
+            request.post(train_options, (error, response, body) => {
+                if (error) {
+                    res.status(400).send(error);
+                }
+
+                res.json("Person added");
+            })
         });
     });
 };
@@ -241,7 +254,6 @@ exports.get_added_face = function (req, res) {
     request.post(getFacesID, (error, response, body) => {
         if (error) {
             res.status(400).send(error);
-            return;
         }
 
         const facesID = JSON.parse(body);
@@ -282,10 +294,11 @@ exports.get_added_face = function (req, res) {
             request.get(getName, (error, response, body) => {
                 if (error) {
                     res.status(400).send(error);
-                    return;
                 }
 
-                res.send(JSON.parse(body));
+                let name = JSON.parse(body);
+
+                res.send('Oh, this is ' + name.name);
             });
 
         });

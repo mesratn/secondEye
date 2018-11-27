@@ -39,7 +39,7 @@ exports.detect_text = function(req, res) {
 
     request.post(options, (error, response, body) => {
         if (error) {
-            res.send(error, 400);
+            res.status(400).send(error);
         }
         let data = JSON.parse(body);
 
@@ -92,7 +92,7 @@ exports.read_text = function(req, res) {
         };
         request.get(options, (error, response, body) => {
             if (error) {
-                res.send(error, 400);
+                res.status(400).send(error);
             }
             var data = JSON.parse(body);
             var message = '';
@@ -102,7 +102,7 @@ exports.read_text = function(req, res) {
                 }
                 res.json({message: message});
             } else {
-                res.send('The text has not been analyzed yet', 400);
+                res.status(400).send('The text has not been analyzed yet');
             }
         });
     });

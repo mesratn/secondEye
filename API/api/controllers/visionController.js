@@ -35,10 +35,10 @@ exports.get_landscape = function(req, res) {
             'Ocp-Apim-Subscription-Key' : process.env.VISION_API_KEY
         }
     };
-    
+
     request.post(options, (error, response, body) => {
         if (error) {
-            res.send(error, 400);
+            res.status(400).send(error);
         }
 
         let data = JSON.parse(body);
