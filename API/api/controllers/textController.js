@@ -67,7 +67,6 @@ exports.detect_text = function(req, res) {
 */
 
 exports.read_text = function(req, res) {
-    console.log('here');
     const sourceImage = req.body.data;
     const imageBinary = converteur(sourceImage);
     const params = {
@@ -105,7 +104,6 @@ exports.read_text = function(req, res) {
                     }
                     var data = JSON.parse(body);
                     var message = '';
-                    console.log(data);
                     if (data['status'] === 'Succeeded') {
                         for (var i = 0, len = data['recognitionResult']['lines'].length; i < len; i++) {
                             message += data['recognitionResult']['lines'][i]['text'] + '. ';
