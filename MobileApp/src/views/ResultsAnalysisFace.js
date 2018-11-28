@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { View, ScrollView, StyleSheet, Text, Image, Dimensions } from 'react-native';
 import { Button, Divider, FormLabel, FormInput } from "react-native-elements";
+import Voice from 'react-native-voice';
 import { VoiceBar } from '../components/VoiceBar';
 import { getEmotions, saveFace } from "../services/Api";
 import { readText } from "../services/Tts";
@@ -32,6 +33,10 @@ export default class ResultsAnalysisFace extends Component {
                 results: []
             }
         }
+
+        // Bind Voice
+        Voice.onSpeechResults = this.onSpeechResults.bind(this);
+        this.onSpeechSwitch = this.onSpeechSwitch.bind(this);
     }
 
     componentDidMount() {
@@ -52,7 +57,14 @@ export default class ResultsAnalysisFace extends Component {
 
 
     componentWillUnmount() {
+        Voice.destroy().then(Voice.removeAllListeners);
         Dimensions.removeEventListener('change', this.onDimensionsChange);
+    }
+
+    setVoiceHandlers() {
+        Voice.removeAllListeners();
+        Voice.onSpeechResults = this.onSpeechResults.bind(this);
+        this.onSpeechSwitch = this.onSpeechSwitch.bind(this);
     }
 
     onDimensionsChange() {
@@ -95,6 +107,29 @@ export default class ResultsAnalysisFace extends Component {
             });
             alert(save);
         }).catch((err) => alert(err + ""));
+    }
+
+    async onSpeechSwitch() {
+        const self = this.state;
+        self.voice.enable = !self.voice.enable;
+        if (self.voice.enable == true)
+            await Voice.start('fr-FR');
+        else {
+            await Voice.stop();
+            self.voice.results = [];
+        }
+        this.setState(self);
+    }
+
+    onSpeechResults(e) {
+        this.onSpeechSwitch().then(() => {
+            if (e.value && e.value.indexOf('lecture') >= 0) {
+                this.onStartReading(0);
+            }
+            else {
+                alert('Commande non reconnue.');
+            }
+        });
     }
 
     render() {
@@ -157,8 +192,8 @@ export default class ResultsAnalysisFace extends Component {
 
                 <VoiceBar
                     active={voice.enable}
-                    commands={[]}
-                    onPressButton={() => alert('pressed')}
+                    commands={['Lecture']}
+                    onPressButton={() => this.onSpeechSwitch()}
                 />
 
             </View>
