@@ -3,6 +3,7 @@
 var request = require('request');
 var sleep = require('sleep');
 var converteur = require('../services/b64ToBinary').convertDataURIToBinary;
+var async = require('async');
 
 exports.test_text = function(req, res) {
     res.json({ message: 'Test Text OK' });
@@ -66,6 +67,7 @@ exports.detect_text = function(req, res) {
 */
 
 exports.read_text = function(req, res) {
+    console.log('here');
     const sourceImage = req.body.data;
     const imageBinary = converteur(sourceImage);
     const params = {
@@ -83,27 +85,47 @@ exports.read_text = function(req, res) {
     };
 
     request.post(options).on('response', (response) => {
-        sleep.sleep(4);
-        const options = {
+        var seconds = 4;
+        const options_reading = {
             uri: response['headers']['operation-location'],
             headers: {
                 'Ocp-Apim-Subscription-Key' : process.env.VISION_API_KEY
             }
         };
-        request.get(options, (error, response, body) => {
-            if (error) {
-                res.status(400).send(error);
-            }
-            var data = JSON.parse(body);
-            var message = '';
-            if (data['status'] === 'Succeeded') {
-                for (var i = 0, len = data['recognitionResult']['lines'].length; i < len; i++) {
-                    message += data['recognitionResult']['lines'][i]['text'] + '. ';
+
+        async.whilst(
+            function() {
+                return seconds < 12;
+            },
+            function(callback) {
+                sleep.sleep(seconds);
+                request.get(options_reading, (error, response, body) => {
+                    if (error) {
+                        callback(err,null);
+                    }
+                    var data = JSON.parse(body);
+                    var message = '';
+                    console.log(data);
+                    if (data['status'] === 'Succeeded') {
+                        for (var i = 0, len = data['recognitionResult']['lines'].length; i < len; i++) {
+                            message += data['recognitionResult']['lines'][i]['text'] + '. ';
+                        }
+                        seconds = 12;
+                        callback(null, message);
+                    } else {
+                        seconds += 4;
+                    }
+                });
+            },
+            function (err, n) {
+                if(err) {
+                    res.status(400).send(err);
+                } else if (n) {
+                    res.json({message: n});
+                } else {
+                    res.json({message: 'The message did not have time to be analyzed. Sorry.'});
                 }
-                res.json({message: message});
-            } else {
-                res.status(400).send('The text has not been analyzed yet');
             }
-        });
+        );
     });
 };
