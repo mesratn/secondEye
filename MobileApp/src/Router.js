@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation';
 import PhotoSelector from "./views/PhotoSelector";
 import DetectionSelector from "./views/DetectionSelector";
 import ResultsAnalysisFace from "./views/ResultsAnalysisFace";
+import ResultsAnalysisPerson from "./views/ResultsAnalysisPerson";
 import ResultsAnalysisLandscape from "./views/ResultsAnalysisLandscape";
 import ResultsAnalysisText from "./views/ResultsAnalysisText";
 
@@ -26,5 +27,6 @@ export const AppStack = createStackNavigator({
     DetectionSelectorView: DetectionSelector,
     ResultsAnalysisFaceView: ResultsAnalysisFace,
     ResultsAnalysisLandscapeView: ResultsAnalysisLandscape,
-    ResultsAnalysisTextView: ResultsAnalysisText
+    ResultsAnalysisTextView: ResultsAnalysisText,
+    ResultsAnalysisPersonView: ResultsAnalysisPerson
 }, styleOptions);

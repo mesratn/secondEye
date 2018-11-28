@@ -1,5 +1,6 @@
 import qs from "qs";
-const URL = 'http://51.75.21.24:3000';
+// const URL = 'http://51.75.21.24:3000';
+const URL = 'http://192.168.0.103:3000';
 
 // OTHERS FUNCTIONS
 
@@ -28,6 +29,18 @@ function errorHandler(response) {
 
 export function getEmotions(image) {
     return RequestHandler(`${URL}/emotions`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: qs.stringify({
+            data: image
+        })
+    });
+}
+
+export function getPersons(image) {
+    return RequestHandler(`${URL}/faces`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'

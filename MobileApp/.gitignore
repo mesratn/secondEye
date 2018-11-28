@@ -6,6 +6,8 @@
 #
 api/node_modules/
 MobileApp/node_modules/
+package-lock.json
+yarn.lock
 node_modules/
 npm-debug.log
 yarn-error.log

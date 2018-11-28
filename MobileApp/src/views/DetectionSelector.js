@@ -83,7 +83,21 @@ export default class DetectionSelector extends Component {
 
                 <ScrollView contentContainerStyle={AppStyle.container}>
 
-                    <Text style={AppStyle.title}> ÉMOTIONS </Text>
+                    <Text style={AppStyle.title}> PERSONNES & ÉMOTIONS </Text>
+
+                    <Text style={AppStyle.instructions}>
+                        Analyse les personnes présentes sur une photo, puis retourne leurs sexes, ages, etc...
+                    </Text>
+
+                    <Button
+                        raised
+                        borderRadius={50}
+                        backgroundColor="#7289DA"
+                        icon={{ name: 'face' }}
+                        containerViewStyle={AppStyle.button}
+                        title='DÉTECTION DES PERSONNES'
+                        onPress={() => this.navigateTo('ResultsAnalysisPersonView')}
+                    />
 
                     <Text style={AppStyle.instructions}>
                         Analyse l’expression faciale d’une photo, puis retourne la confiance d’un ensemble d’émotions pour chaque visage.
@@ -95,24 +109,23 @@ export default class DetectionSelector extends Component {
                         backgroundColor="#7289DA"
                         icon={{ name: 'tag-faces' }}
                         containerViewStyle={AppStyle.button}
-                        title='DÉTECTION DES ÉMOTIONS & VISAGES'
+                        title='DÉTECTION DES ÉMOTIONS'
                         onPress={() => this.navigateTo('ResultsAnalysisFaceView')}
                     />
 
                     <Divider style={AppStyle.divider} />
 
-                    <Text style={AppStyle.title}> PERSONNES </Text>
+                    <Text style={AppStyle.title}> TEXTES </Text>
 
                     <Text style={AppStyle.instructions}>
                         Analyse les personnes présentes sur une photo, puis retourne le nom des personnes enregistrés dans vos contacts.
                     </Text>
 
-
                     <Button
                         raised
                         borderRadius={50}
                         backgroundColor="#7289DA"
-                        icon={{ name: 'face' }}
+                        icon={{ name: 'text-fields' }}
                         containerViewStyle={AppStyle.button}
                         title='DÉTECTION DES TEXTES'
                         onPress={() => this.navigateTo('ResultsAnalysisTextView')}
