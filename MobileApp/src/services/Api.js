@@ -88,18 +88,6 @@ export function saveFace(image, name){
     });
 }
 
-export function getFace(image){
-    return RequestHandler(`${URL}/face/added`, {
-        method: 'POST',
-        headers:{
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-        },
-        body: qs.stringify({
-            data: image
-        })
-    });
-}
-
 export function getAddedFace(image){
     return RequestHandler(`${URL}/face/added`, {
         method: 'POST',
