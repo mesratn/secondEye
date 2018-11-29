@@ -4,7 +4,7 @@ import { View, ScrollView, StyleSheet, Text, Image, Dimensions } from 'react-nat
 import { Button, Divider, FormLabel, FormInput } from "react-native-elements";
 import Voice from 'react-native-voice';
 import { VoiceBar } from '../components/VoiceBar';
-import { getEmotions, saveFace } from "../services/Api";
+import { getEmotions, saveFace, getAddedFace } from "../services/Api";
 import { readText } from "../services/Tts";
 import { AppStyle } from "../utils/Styles";
 
@@ -100,13 +100,36 @@ export default class ResultsAnalysisFace extends Component {
 
     onStartSending() {
         const { image, name } = this.state;
+        const imageURI = `data:${image.type};base64,${image.data}`;
 
-        saveFace(image, name).then((returnSaveFace) => {
+        saveFace(imageURI, name).then((returnSaveFace) => {
             this.setState({
                 save: returnSaveFace
             });
-            alert(save);
+            alert(returnSaveFace.message);
         }).catch((err) => alert(err + ""));
+    }
+
+    onCheckFace() {
+        const { image } = this.state;
+        const imageURI = `data:${image.type};base64,${image.data}`;
+
+        this.setState({ loading: true });
+        getAddedFace(imageURI).then((name) => {
+            const tmp = name.message.includes('undefined') ? "I don't reconize this person." : name.message; 
+            readText(tmp).then(() => {
+                this.setState({ loading: false });
+            }, () => {
+                this.setState({ loading: false });
+            }); 
+        }).catch(e => {
+            readText("I don't reconize this person.").then(() => {
+                this.setState({ loading: false });
+            }, () => {
+                this.setState({ loading: false });
+            });
+            this.setState({ loading: false });
+        });
     }
 
     async onSpeechSwitch() {
@@ -131,6 +154,8 @@ export default class ResultsAnalysisFace extends Component {
             }
         });
     }
+
+
 
     render() {
         const { image, imgWidth, imgHeight, emotions, name, loading, voice, width } = this.state
@@ -166,6 +191,20 @@ export default class ResultsAnalysisFace extends Component {
                         title='LECTURE DES DONNÉES'
                         containerViewStyle={AppStyle.button}
                         onPress={() => this.onStartReading(0)}
+                    />
+
+                    <Divider style={AppStyle.divider}/>
+
+                    <Button
+                        raised
+                        loading={loading}
+                        disabled={loading}
+                        borderRadius={50}
+                        backgroundColor="#7289DA"
+                        icon={{ name: 'save' }}
+                        title='VISAGE DÉJÀ ENREGISTRÉ ?'
+                        containerViewStyle={AppStyle.button}
+                        onPress={() => this.onCheckFace()}
                     />
 
                     <Divider style={AppStyle.divider}/>

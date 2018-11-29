@@ -58,7 +58,7 @@ export default class ResultsAnalysisText extends Component {
                 loading: false,
                 texts: texts.message
             });
-        }).catch((err) => alert(err + ""));
+        }).catch((err) => alert(JSON.stringify(err) + ""));
     }
 
     componentWillUnmount() {
