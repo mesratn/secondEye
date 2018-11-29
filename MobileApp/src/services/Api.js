@@ -1,6 +1,6 @@
 import qs from "qs";
-// const URL = 'http://51.75.21.24:3000';
-const URL = 'http://192.168.0.103:3000';
+const URL = 'http://51.75.21.24:3000';
+// const URL = 'http://192.168.0.103:3000';
 
 // OTHERS FUNCTIONS
 
