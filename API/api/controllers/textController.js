@@ -104,7 +104,7 @@ exports.read_text = function(req, res) {
                 }
                 res.status(200).send({message: message});
             } else {
-                res.status(200).send({message: 'The text has not been analyzed yet'}`);
+                res.status(200).send("{message: 'The text has not been analyzed yet'}");
             }
         });
     });

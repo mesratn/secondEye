@@ -212,7 +212,7 @@ exports.add_face = function (req, res) {
                     res.status(400).send(error);
                 }
 
-                res.status(200).send("Person added");
+                res.status(200).send("{message: 'Person added'}");
             })
         });
     });
@@ -298,7 +298,7 @@ exports.get_added_face = function (req, res) {
 
                 let name = JSON.parse(body);
 
-                res.status(200).send('Oh, this is ' + name.name);
+                res.status(200).send("{message : 'Oh, this is " + name.name + " '}");
             });
 
         });
