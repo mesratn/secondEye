@@ -94,7 +94,7 @@ exports.read_text = function(req, res) {
 
         request.get(options_reading, (error, response, body) => {
             if (error) {
-                res.send(error, 400);
+                res.status(400).send({message: "An error occured while reading the text"});
             }
             var data = JSON.parse(body);
             var message = '';
@@ -102,9 +102,9 @@ exports.read_text = function(req, res) {
                 for (var i = 0, len = data['recognitionResult']['lines'].length; i < len; i++) {
                     message += data['recognitionResult']['lines'][i]['text'] + '. ';
                 }
-                res.json({message: message});
+                res.status(200).send({message: message});
             } else {
-                res.send('The text has not been analyzed yet', 400);
+                res.status(200).send({message: 'The text has not been analyzed yet'}`);
             }
         });
     });
