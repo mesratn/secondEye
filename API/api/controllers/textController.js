@@ -84,7 +84,7 @@ exports.read_text = function(req, res) {
     };
 
     request.post(options).on('response', (response) => {
-        var seconds = 4;
+        sleep.sleep(8);
         const options_reading = {
             uri: response['headers']['operation-location'],
             headers: {
@@ -92,41 +92,20 @@ exports.read_text = function(req, res) {
             }
         };
 
-        async.whilst(
-            function() {
-                return seconds < 12;
-            },
-            function(callback) {
-                sleep.sleep(seconds);
-                console.log(options_reading);
-                request.get(options_reading, (error, response, body) => {
-                    if (error) {
-                        callback(error,null);
-                    } else {
-                        var data = JSON.parse(body);
-                        var message = '';
-                        if (data['status'] === 'Succeeded') {
-                            for (var i = 0, len = data['recognitionResult']['lines'].length; i < len; i++) {
-                                message += data['recognitionResult']['lines'][i]['text'] + '. ';
-                            }
-                            seconds = 12;
-                            callback(null, message);
-                        } else {
-                            seconds += 4;
-                        }
-                    }
-                });
-            },
-            function (err, n) {
-                if(err) {
-                    console.log(err);
-                    res.status(400).send(err);
-                } else if (n) {
-                    res.json({message: n});
-                } else {
-                    res.json({message: 'The message did not have time to be analyzed. Sorry.'});
-                }
+        request.get(options_reading, (error, response, body) => {
+            if (error) {
+                res.send(error, 400);
             }
-        );
+            var data = JSON.parse(body);
+            var message = '';
+            if (data['status'] === 'Succeeded') {
+                for (var i = 0, len = data['recognitionResult']['lines'].length; i < len; i++) {
+                    message += data['recognitionResult']['lines'][i]['text'] + '. ';
+                }
+                res.json({message: message});
+            } else {
+                res.send('The text has not been analyzed yet', 400);
+            }
+        });
     });
 };
