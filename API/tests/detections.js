@@ -26,6 +26,7 @@ const getFile = (file) => {
 }
 
 const images = {
+    lola:       getFile('./tests/assets/lola.jpg'),
     texts:      getFile('./tests/assets/text.jpg'),
     faces:      getFile('./tests/assets/face.jpg'),
     landscapes: getFile('./tests/assets/landscape.jpg')
@@ -93,6 +94,44 @@ describe('Face', function () {
                     res.body.should.be.a('object');
                     res.body.global.should.be.a('string');
                     expect(res.body.faces.length).to.not.equal(0);
+
+                    done();
+                });
+        });
+    });
+
+    describe('/POST face/add', () => {
+        it('it should add a face and confirm it', (done) => {
+            chai.request(server)
+                .post('/face/add')
+                .send({ data: images.lola, name: 'Lola' })
+                .end((err, res) => {
+                    expect(err).to.be.null;
+
+                    console.log(res.body);
+
+                    res.should.have.status(200);
+                    res.body.should.be.a('string');
+                    expect(res.body).to.equal("Person added");
+
+                    done();
+                });
+        });
+    });
+
+    describe('/POST face/added', () => {
+        it('it should recongnize a saved face', (done) => {
+            chai.request(server)
+                .post('/face/added')
+                .send({ data: images.lola })
+                .end((err, res) => {
+                    expect(err).to.be.null;
+
+                    console.log(res.body);
+
+                    res.should.have.status(200);
+                    res.body.should.be.a('string');
+                    expect(res.body).to.equal("Oh, this is Lola");
 
                     done();
                 });
