@@ -298,7 +298,7 @@ exports.get_added_face = function (req, res) {
 
                 let name = JSON.parse(body);
 
-                res.status(200).send({message : '"Oh, this is '+ name.name + '"'});
+                res.status(200).send({message : 'Oh, this is '+ name.name});
             });
 
         });
