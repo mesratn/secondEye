@@ -111,8 +111,8 @@ describe('Face', function () {
                     console.log(res.body);
 
                     res.should.have.status(200);
-                    res.body.should.be.a('string');
-                    expect(res.body).to.equal("Person added");
+                    res.body.should.be.a('object');
+                    expect(res.body.message).to.equal("Person added");
 
                     done();
                 });
@@ -130,8 +130,8 @@ describe('Face', function () {
                     console.log(res.body);
 
                     res.should.have.status(200);
-                    res.body.should.be.a('string');
-                    expect(res.body).to.equal("Oh, this is Lola");
+                    res.body.should.be.a('object');
+                    expect(res.body.message).to.equal('"Oh, this is Lola"');
 
                     done();
                 });
@@ -141,7 +141,7 @@ describe('Face', function () {
 });
 
 describe('Text', function () {
-    this.timeout(15000);
+    this.timeout(150000);
 
     beforeEach((done) => {
         //Before each test if needed
