@@ -33,44 +33,38 @@ exports.get_faces = function (req, res) {
     const sourceImage = req.body.data;
     const imageBinary = converteur(sourceImage);
 
-    //Request options
-    const options = {
-        uri: process.env.FACE_API_URL + '/detect',
-        qs: params,
-        body: imageBinary,
-        headers: {
-            'Content-Type': 'application/octet-stream',
-            'Ocp-Apim-Subscription-Key': process.env.FACE_API_KEY
-        }
-    };
+    API.faces(imageBinary, params).then(response => {
+        const data = JSON.parse(response);
 
-    // Perform the REST API call.
-    request.post(options, (error, response, body) => {
-        if (error) {
-            res.status(400).send(error);
+        if (data.length == 0) {
+            res.status(400).send({
+                error: 'No face detected.'
+            });
         }
-        let data = JSON.parse(body);
-        var faceCount = '"I detect ' + data.length + ' faces!"';
-        var response = '{"global" :' + faceCount + ', "faces":[';
-        var i;
-        for (i = 0; i < data.length; i++) {
-            if (i == 0)
-                var responseString = '{"message": ';
-            else
-                var responseString = ',{"message": ';
+
+        const analyse = {
+            global: `I detect ${data.length} faces!`,
+            faces: []
+        };
+
+        for (let i = 0; i < data.length; i++) {
+            var { gender, age } = data[i].faceAttributes;
+
             if (data.length == 1)
-                responseString += '"Here is what I detect in this face';
+                var startString = 'Here is what I detect in this face';
             else
-                responseString += '"For the face number ' + (i + 1);
-            var gender = data[i].faceAttributes.gender;
-            responseString += '. The gender is : ' + gender;
-            var age = data[i].faceAttributes.age;
-            responseString += '. The age is estimated to : ' + age + '."}';
-            response += responseString;
+                var startString = `For the face number ${i + 1}`;
+
+            let message = {
+                message: `${startString}. The gender is ${gender} and the age is estimated to ${age}.`
+            }
+
+            analyse['faces'].push(message);
         }
-        response += ']}'
-        response = JSON.parse(response);
-        res.json(response);
+
+        res.json(analyse);
+    }).catch(error => {
+        res.status(520).send({ error: error + "" });
     });
 };
 
@@ -136,7 +130,7 @@ exports.get_emotions = (req, res) => {
         }
 
         res.json(analyse);
-    }).catch((error) => {
+    }).catch(error => {
         res.status(520).send({ error: error + "" });
     });
 };

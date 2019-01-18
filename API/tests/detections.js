@@ -38,7 +38,7 @@ const expect = chai.expect;
 
 
 describe('Face', function () {
-    this.timeout(15000);
+    this.timeout(30000);
 
     beforeEach((done) => {
         //Before each test if needed
