@@ -1,15 +1,31 @@
-require('dotenv').config();
+// Check config file
+const dotenv = require('dotenv').config();
+if (dotenv.error) {
+    throw dotenv.error;
+}
 
-var express = require('express'),
+
+// Load modules
+const express = require('express'),
     app = express(),
     port = process.env.PORT || 3000,
     morgan = require('morgan'),
     bodyParser = require('body-parser');
 
-app.use(morgan('combined'))
-app.use(bodyParser.json({limit: '50mb', extended: true}))
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
 
+// Config API
+app.use(morgan('combined'))
+app.use(bodyParser.json({
+    limit: '50mb',
+    extended: true
+}));
+app.use(bodyParser.urlencoded({
+    limit: '50mb',
+    extended: true
+}));
+
+
+// Load routes & 404
 var routes = require('./api/routes/visionRoutes'); //importing route
 routes(app); //register the route
 
@@ -23,8 +39,11 @@ app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
 });
 
-app.listen(port);
 
+// Start API
+app.listen(port);
 console.log('Second EYE RESTful API server started on: ' + port);
 
-module.exports = app; // for testing
+
+// Export app for testings
+module.exports = app;
