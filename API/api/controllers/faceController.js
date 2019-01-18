@@ -2,6 +2,7 @@
 
 var request = require('request');
 var converteur = require('../services/b64ToBinary').convertDataURIToBinary;
+const API = require('../services/api').API;
 
 exports.test_faces = function (req, res) {
     res.json({
@@ -96,24 +97,15 @@ exports.get_emotions = (req, res) => {
         "returnFaceAttributes": "age,gender,smile,glasses,emotion"
     };
 
-    //Request options
-    const options = {
-        uri: process.env.FACE_API_URL + '/detect',
-        qs: params,
-        body: imageBinary,
-        headers: {
-            'Content-Type': 'application/octet-stream',
-            'Ocp-Apim-Subscription-Key': process.env.FACE_API_KEY
-        }
-    };
+    API.faces(imageBinary, params).then(response => {
+        const data = JSON.parse(response);
 
-    // Perform the REST API call.
-    request.post(options, (error, response, body) => {
-        if (error) {
-            res.status(400).send(error);
+        if (data.length == 0) {
+            res.status(400).send({
+                message: 'No face detected.'
+            });
         }
 
-        const data = JSON.parse(body);
         const analyse = {
             global: `I detect ${data.length} faces!`,
             faces: []
@@ -144,6 +136,8 @@ exports.get_emotions = (req, res) => {
         }
 
         res.json(analyse);
+    }).catch((error) => {
+        res.status(520).send({ error: error + "" });
     });
 };
 
@@ -212,7 +206,9 @@ exports.add_face = function (req, res) {
                     res.status(400).send(error);
                 }
 
-                res.status(200).send({message: 'Person added'});
+                res.status(200).send({
+                    message: 'Person added'
+                });
             })
         });
     });
@@ -284,7 +280,7 @@ exports.get_added_face = function (req, res) {
             });
 
             const getName = {
-                uri: process.env.FACE_API_URL  + `persongroups/group1/persons/${savedIDs[0]}`,
+                uri: process.env.FACE_API_URL + `persongroups/group1/persons/${savedIDs[0]}`,
                 headers: {
                     'Content-Type': 'application/json',
                     'Ocp-Apim-Subscription-Key': process.env.FACE_API_KEY
@@ -298,7 +294,9 @@ exports.get_added_face = function (req, res) {
 
                 let name = JSON.parse(body);
 
-                res.status(200).send({message : 'Oh, this is '+ name.name});
+                res.status(200).send({
+                    message: 'Oh, this is ' + name.name
+                });
             });
 
         });

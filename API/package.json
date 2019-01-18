@@ -38,7 +38,9 @@
     "body-parser": "^1.18.3",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
+    "morgan": "^1.9.1",
     "request": "^2.88.0",
+    "request-promise": "^4.2.2",
     "sleep": "^5.2.3"
   }
 }

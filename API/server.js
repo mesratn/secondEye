@@ -3,8 +3,10 @@ require('dotenv').config();
 var express = require('express'),
     app = express(),
     port = process.env.PORT || 3000,
+    morgan = require('morgan'),
     bodyParser = require('body-parser');
 
+app.use(morgan('combined'))
 app.use(bodyParser.json({limit: '50mb', extended: true}))
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
 
