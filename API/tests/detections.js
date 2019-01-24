@@ -53,8 +53,6 @@ describe('Face', function () {
                 .end((err, res) => {
                     expect(err).to.be.null;
 
-                    console.log(res.body);
-
                     res.should.have.status(200);
                     res.body.should.be.a('object');
                     res.body.global.should.be.a('string');
@@ -88,8 +86,6 @@ describe('Face', function () {
                 .end((err, res) => {
                     expect(err).to.be.null;
 
-                    console.log(res.body);
-
                     res.should.have.status(200);
                     res.body.should.be.a('object');
                     res.body.global.should.be.a('string');
@@ -108,8 +104,6 @@ describe('Face', function () {
                 .end((err, res) => {
                     expect(err).to.be.null;
 
-                    console.log(res.body);
-
                     res.should.have.status(200);
                     res.body.should.be.a('object');
                     expect(res.body.message).to.equal("Person added");
@@ -127,11 +121,9 @@ describe('Face', function () {
                 .end((err, res) => {
                     expect(err).to.be.null;
 
-                    console.log(res.body);
-
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                    expect(res.body.message).to.equal('"Oh, this is Lola"');
+                    expect(res.body.message).to.equal('Oh, this is Lola');
 
                     done();
                 });
@@ -155,8 +147,6 @@ describe('Text', function () {
                 .send({ data: images.faces })
                 .end((err, res) => {
                     expect(err).to.be.null;
-
-                    console.log(res.body);
 
                     res.should.have.status(200);
                     res.body.should.be.a('object');
@@ -190,8 +180,6 @@ describe('Text', function () {
                 .send({ data: images.texts })
                 .end((err, res) => {
                     expect(err).to.be.null;
-
-                    console.log(res.body);
 
                     res.should.have.status(200);
                     res.body.should.be.a('object');
@@ -235,8 +223,6 @@ describe('Vision', function () {
                 .send({ data: images.landscapes })
                 .end((err, res) => {
                     expect(err).to.be.null;
-
-                    console.log(res.body);
 
                     res.should.have.status(200);
                     res.body.should.be.a('object');

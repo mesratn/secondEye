@@ -14,7 +14,9 @@ const express = require('express'),
 
 
 // Config API
-app.use(morgan('combined'))
+if (process.env.NODE_ENV !== 'test')
+    app.use(morgan('combined'))
+    
 app.use(bodyParser.json({
     limit: '50mb',
     extended: true

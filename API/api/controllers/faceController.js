@@ -2,7 +2,7 @@
 
 var request = require('request');
 var converteur = require('../services/b64ToBinary').convertDataURIToBinary;
-const API = require('../services/api').API;
+const { API } = require('../services/api');
 
 exports.test_faces = function (req, res) {
     res.json({
@@ -18,20 +18,22 @@ exports.test_faces = function (req, res) {
  *
  * @return :
  *      - 400, error
+ *      - 520, unknown error
  *      - 200, json
  *
  * Cette fonction fait appel à l'API Microsoft :
  * Face:detect
  */
 exports.get_faces = function (req, res) {
+    const sourceImage = req.body.data;
+    const imageBinary = converteur(sourceImage);
+
     // Request parameters
     var params = {
         "returnFaceId": "true",
         "returnFaceLandmarks": "false",
         "returnFaceAttributes": "age,gender,smile,glasses"
     };
-    const sourceImage = req.body.data;
-    const imageBinary = converteur(sourceImage);
 
     API.faces(imageBinary, params).then(response => {
         const data = JSON.parse(response);
@@ -56,6 +58,8 @@ exports.get_faces = function (req, res) {
                 var startString = `For the face number ${i + 1}`;
 
             let message = {
+                age: age,
+                gender: gender,
                 message: `${startString}. The gender is ${gender} and the age is estimated to ${age}.`
             }
 
@@ -64,6 +68,11 @@ exports.get_faces = function (req, res) {
 
         res.json(analyse);
     }).catch(error => {
+        if (error.message == "Error: Argument error, options.body.")
+            return res.status(400).send({
+                error: 'File error or bad file format.'
+            });
+
         res.status(520).send({ error: error + "" });
     });
 };
@@ -75,6 +84,7 @@ exports.get_faces = function (req, res) {
  *
  * @return :
  *      - 400, error
+ *      - 520, unknown error
  *      - 200, json
  *
  * Cette fonction fait appel à l'API Microsoft :
@@ -123,6 +133,7 @@ exports.get_emotions = (req, res) => {
                 var startString = `For the face number ${i + 1}`;
 
             let message = {
+                emotion: rightEmotion,
                 message: `${startString}. The most shown emotion is ${rightEmotion}.`
             }
 
