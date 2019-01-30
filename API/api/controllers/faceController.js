@@ -59,55 +59,16 @@ exports.get_emotions = (req, res) => {
     const sourceImage = req.body.data;
     const imageBinary = converteur(sourceImage);
 
-    // Request parameters
-    const params = {
-        "returnFaceId": "true",
-        "returnFaceLandmarks": "false",
-        "returnFaceAttributes": "age,gender,smile,glasses,emotion"
-    };
-
-    API.faces(imageBinary, params).then(response => {
-        const data = JSON.parse(response);
-
-        if (data.length == 0) {
-            res.status(400).send({
-                message: 'No face detected.'
-            });
+    API.getFacesEmotions(imageBinary).then(result => {
+        res.json(result);
+    }).catch(e => {
+        if (e.httpCode) {
+            res.status(e.httpCode).send(e);
+        } else {
+            let error = errorsConstants.UNHANDLED_ERROR;
+            error.error = e + "";
+            res.status(error.httpCode).json(error);
         }
-
-        const analyse = {
-            global: `I detect ${data.length} faces!`,
-            faces: []
-        };
-
-        for (let i = 0; i < data.length; i++) {
-            var emotion = data[i].faceAttributes.emotion;
-            var rightEmotion = "";
-            var biggestScore = 0;
-
-            for (let key in emotion) {
-                if (emotion[key] > biggestScore) {
-                    biggestScore = emotion[key];
-                    rightEmotion = key;
-                }
-            }
-
-            if (data.length == 1)
-                var startString = 'Here is what I detect in this face';
-            else
-                var startString = `For the face number ${i + 1}`;
-
-            let message = {
-                emotion: rightEmotion,
-                message: `${startString}. The most shown emotion is ${rightEmotion}.`
-            }
-
-            analyse['faces'].push(message);
-        }
-
-        res.json(analyse);
-    }).catch(error => {
-        res.status(520).send({ error: error + "" });
     });
 };
 

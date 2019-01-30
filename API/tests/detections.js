@@ -88,8 +88,9 @@ describe('Face', function () {
 
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                    res.body.global.should.be.a('string');
+
                     expect(res.body.faces.length).to.not.equal(0);
+                    expect(res.body.faces.length).to.be.equal(5);
 
                     done();
                 });
