@@ -55,8 +55,9 @@ describe('Face', function () {
 
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                    res.body.global.should.be.a('string');
+
                     expect(res.body.faces.length).to.not.equal(0);
+                    expect(res.body.faces.length).to.be.equal(5);
 
                     done();
                 });
@@ -70,7 +71,6 @@ describe('Face', function () {
                 .send({ data: 'Hello' })
                 .end((err, res) => {
                     expect(err).to.not.be.null;
-
                     res.should.have.status(400);
 
                     done();

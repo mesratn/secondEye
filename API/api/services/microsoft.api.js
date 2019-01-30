@@ -1,6 +1,6 @@
 const request = require("request-promise");
 
-exports.faces = async (imageBinary, params = {}) => {
+exports.detect = async (imageBinary, params = {}) => {
     const options = {
         uri: process.env.FACE_API_URL + '/detect',
         qs: params,

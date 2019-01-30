@@ -2,7 +2,8 @@
 
 var request = require('request');
 var converteur = require('../services/b64ToBinary').convertDataURIToBinary;
-const { API } = require('../services/api');
+const API = require('../services/api');
+const errorsConstants = require('../constants/errors');
 
 exports.test_faces = function (req, res) {
     res.json({
@@ -24,58 +25,22 @@ exports.test_faces = function (req, res) {
  * Cette fonction fait appel à l'API Microsoft :
  * Face:detect
  */
-exports.get_faces = function (req, res) {
+exports.get_faces = (req, res) => {
     const sourceImage = req.body.data;
     const imageBinary = converteur(sourceImage);
 
-    // Request parameters
-    var params = {
-        "returnFaceId": "true",
-        "returnFaceLandmarks": "false",
-        "returnFaceAttributes": "age,gender,smile,glasses"
-    };
-
-    API.faces(imageBinary, params).then(response => {
-        const data = JSON.parse(response);
-
-        if (data.length == 0) {
-            res.status(400).send({
-                error: 'No face detected.'
-            });
+    API.getFacesInformations(imageBinary).then(result => {
+        res.json(result);
+    }).catch(e => {
+        if (e.httpCode) {
+            res.status(e.httpCode).send(e);
+        } else {
+            let error = errorsConstants.UNHANDLED_ERROR;
+            error.error = e + "";
+            res.status(error.httpCode).json(error);
         }
-
-        const analyse = {
-            global: `I detect ${data.length} faces!`,
-            faces: []
-        };
-
-        for (let i = 0; i < data.length; i++) {
-            var { gender, age } = data[i].faceAttributes;
-
-            if (data.length == 1)
-                var startString = 'Here is what I detect in this face';
-            else
-                var startString = `For the face number ${i + 1}`;
-
-            let message = {
-                age: age,
-                gender: gender,
-                message: `${startString}. The gender is ${gender} and the age is estimated to ${age}.`
-            }
-
-            analyse['faces'].push(message);
-        }
-
-        res.json(analyse);
-    }).catch(error => {
-        if (error.message == "Error: Argument error, options.body.")
-            return res.status(400).send({
-                error: 'File error or bad file format.'
-            });
-
-        res.status(520).send({ error: error + "" });
     });
-};
+}
 
 /*
  * Fonction qui détecte les émotions sur les visages dans une image
