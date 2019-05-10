@@ -16,7 +16,7 @@ const express = require('express'),
 // Config API
 if (process.env.NODE_ENV !== 'test')
     app.use(morgan('combined'))
-    
+
 app.use(bodyParser.json({
     limit: '50mb',
     extended: true
@@ -37,8 +37,15 @@ routes(app); //register the route
 var routes = require('./api/routes/faceRoutes'); //importing route
 routes(app); //register the route
 
-app.use(function(req, res) {
-    res.status(404).send({url: req.originalUrl + ' not found'})
+app.use((err, req, res, next) => {
+    if (err) {
+        if (err.httpCode)
+            res.status(err.httpCode).send({ error: err.error });
+        else
+            res.status(520).send({ error: err + "" });
+    } else {
+        res.status(404).send({ error: req.originalUrl + ' not found' });
+    }
 });
 
 

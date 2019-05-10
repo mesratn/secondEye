@@ -13,5 +13,10 @@ module.exports = {
         code: 20,
         error: 'No face detected.',
         httpCode: 400
+    },
+    NO_SAVED_FACE: {
+        code: 21,
+        error: 'No saved face detected.',
+        httpCode: 400
     }
 }
