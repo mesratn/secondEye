@@ -111,3 +111,29 @@ exports.PersonGroupPerson.getPersonName = async (personGroupId = "", personId = 
 
     return JSON.parse(result);
 }
+
+/**
+ * Microsoft - Landscape
+ */
+
+exports.Landscape = {};
+
+exports.Landscape.getLandscape = async (imageBinary) => {
+    const params = {
+        'visualFeatures': 'Categories,Description,Color',
+    };
+
+    const requestOptions = {
+        uri: process.env.VISION_API_URL + '/analyze',
+        qs: params,
+        body: imageBinary,
+        headers: {
+            'Content-Type': 'application/octet-stream',
+            'Ocp-Apim-Subscription-Key' : process.env.VISION_API_KEY
+        }
+    };
+
+    var result = await request.get(requestOptions);
+
+    return JSON.parse(result);
+}

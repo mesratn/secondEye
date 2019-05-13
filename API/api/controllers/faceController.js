@@ -1,6 +1,5 @@
 'use strict';
 
-var request = require('request');
 var converteur = require('../services/b64ToBinary').convertDataURIToBinary;
 const API = require('../services/api');
 
@@ -24,7 +23,7 @@ exports.all_faces_informations = async (req, res, next) => {
         const sourceImage = req.body.data;
         const imageBinary = converteur(sourceImage);
 
-        var informations = await API.getFacesAllInformations(imageBinary);
+        var informations = await API.getFaces(imageBinary);
         res.json(informations);
     } catch (e) {
         next(e);

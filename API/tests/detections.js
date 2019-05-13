@@ -22,7 +22,7 @@ const getFile = (file) => {
     // read binary data
     var bitmap = fs.readFileSync(file);
     // convert binary data to base64 encoded string
-    return 'data:image/jpeg;base64,' + new Buffer(bitmap).toString('base64');
+    return 'data:image/jpeg;base64,' + new Buffer.from(bitmap).toString('base64');
 }
 
 const images = {
@@ -43,32 +43,6 @@ describe('Face', function () {
     beforeEach((done) => {
         //Before each test if needed
         done();
-    });
-
-    describe('/POST faces', () => {
-        it('it should gather informations on 1 face with name', (done) => {
-            chai.request(server)
-                .post('/faces')
-                .send({ data: images.lola })
-                .end((err, res) => {
-                    // Check errors and response http code
-                    expect(err).to.be.null;
-                    res.should.have.status(200);
-
-                    // Check response type and length
-                    res.body.should.be.a('array');
-                    expect(res.body.length).to.not.equal(0);
-                    expect(res.body.length).to.be.equal(1);
-
-                    // Check reponse values
-                    expect(res.body[0].gender).to.be.equal("female");
-                    expect(res.body[0].age).to.be.closeTo(25, 2);
-                    expect(res.body[0].emotion).to.be.equal("happiness");
-                    expect(res.body[0].name).to.be.equal("Lola");
-
-                    done();
-                });
-        });
     });
 
     describe('/POST faces', () => {
@@ -111,58 +85,62 @@ describe('Face', function () {
         });
     });
 
-    // describe('/POST emotions', () => {
-    //     it('it should gather emotions on a picture', (done) => {
-    //         chai.request(server)
-    //             .post('/emotions')
-    //             .send({ data: images.faces })
-    //             .end((err, res) => {
-    //                 expect(err).to.be.null;
+    describe('/POST faces', () => {
+        it('it should NOT gather informations on faces', (done) => {
+            chai.request(server)
+                .post('/faces')
+                .send({ data: images.landscapes })
+                .end((err, res) => {
+                    expect(err).to.not.be.null;
+                    res.should.have.status(400);
 
-    //                 res.should.have.status(200);
-    //                 res.body.should.be.a('object');
+                    done();
+                });
+        });
+    });
 
-    //                 expect(res.body.faces.length).to.not.equal(0);
-    //                 expect(res.body.faces.length).to.be.equal(5);
+    describe('/POST face/add', () => {
+        it('it should add a face and confirm it', (done) => {
+            chai.request(server)
+                .post('/face/add')
+                .send({ data: images.lola, name: 'Lola' })
+                .end((err, res) => {
+                    expect(err).to.be.null;
 
-    //                 done();
-    //             });
-    //     });
-    // });
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    expect(res.body.message).to.equal("Person added");
 
-    // describe('/POST face/add', () => {
-    //     it('it should add a face and confirm it', (done) => {
-    //         chai.request(server)
-    //             .post('/face/add')
-    //             .send({ data: images.lola, name: 'Lola' })
-    //             .end((err, res) => {
-    //                 expect(err).to.be.null;
+                    done();
+                });
+        });
+    });
 
-    //                 res.should.have.status(200);
-    //                 res.body.should.be.a('object');
-    //                 expect(res.body.message).to.equal("Person added");
+    describe('/POST faces', () => {
+        it('it should gather informations on 1 face with name', (done) => {
+            chai.request(server)
+                .post('/faces')
+                .send({ data: images.lola })
+                .end((err, res) => {
+                    // Check errors and response http code
+                    expect(err).to.be.null;
+                    res.should.have.status(200);
 
-    //                 done();
-    //             });
-    //     });
-    // });
+                    // Check response type and length
+                    res.body.should.be.a('array');
+                    expect(res.body.length).to.not.equal(0);
+                    expect(res.body.length).to.be.equal(1);
 
-    // describe('/POST face/added', () => {
-    //     it('it should recongnize a saved face', (done) => {
-    //         chai.request(server)
-    //             .post('/face/added')
-    //             .send({ data: images.lola })
-    //             .end((err, res) => {
-    //                 expect(err).to.be.null;
+                    // Check reponse values
+                    expect(res.body[0].gender).to.be.equal("female");
+                    expect(res.body[0].age).to.be.closeTo(25, 2);
+                    expect(res.body[0].emotion).to.be.equal("happiness");
+                    expect(res.body[0].name).to.be.equal("Lola");
 
-    //                 res.should.have.status(200);
-    //                 res.body.should.be.a('object');
-    //                 expect(res.body.message).to.equal('Oh, this is Lola');
-
-    //                 done();
-    //             });
-    //     });
-    // });
+                    done();
+                });
+        });
+    });
 
 });
 
