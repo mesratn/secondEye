@@ -25,14 +25,48 @@ exports.test_faces = function (req, res) {
  * Face:detect
  */
 
+
+exports.all_faces_informations = async (req, res, next) => {
+    try {
+        const sourceImage = req.body.data;
+        const imageBinary = converteur(sourceImage);
+
+        try {
+            var informations = await API.getFacesAllInformations(imageBinary);
+            res.json(informations);
+        } catch (err) {
+            throw(err);
+        }
+    } catch (e) {
+        next(e);
+    }
+    
+}
+
 exports.get_faces = async (req, res, next) => {
     try {
         const sourceImage = req.body.data;
         const imageBinary = converteur(sourceImage);
 
         var informations = await API.getFacesInformations(imageBinary);
+        var emotions = await API.getFacesEmotions(imageBinary);
 
-        res.json(informations);
+        try {
+            var names = await API.getPersonName(imageBinary);
+
+            res.json({
+                informations,
+                emotions,
+                names
+            });
+        } catch (error) {
+            res.json({
+                informations,
+                emotions
+            });
+        }
+
+        // res.json(informations);
     } catch(e) {
         next(e);
     }

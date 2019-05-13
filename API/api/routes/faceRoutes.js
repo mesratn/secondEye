@@ -11,7 +11,7 @@ module.exports = function(app) {
 
 	//Route de détection de visages
 	app.route('/faces')
-		.post(face.get_faces);
+		.post(face.all_faces_informations);
 
 	//Route de lecture des émotions
 	app.route('/emotions')
