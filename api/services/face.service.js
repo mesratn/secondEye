@@ -89,6 +89,10 @@ exports.addPersonFace = async (imageBinary, name) => {
 
         return trainIA;
     } catch (error) {
-        throw (error);
+        if (error.message == "Error: Argument error, options.body.") {
+            throw (errorsConstants.FILE_ERROR);
+        } else {
+            throw (error);
+        }
     }
 }

@@ -18,5 +18,15 @@ module.exports = {
         code: 21,
         error: 'No saved face detected.',
         httpCode: 400
+    },
+    NO_TEXT: {
+        code: 21,
+        error: 'No text detected.',
+        httpCode: 400
+    },
+    NO_LANDSCAPE: {
+        code: 21,
+        error: 'No landscape detected.',
+        httpCode: 400
     }
 }

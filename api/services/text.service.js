@@ -20,8 +20,12 @@ exports.getTexts = async (imageBinary) => {
                 j++
             }
         }
-        throw ('The text has not been analyzed');
+        throw (errorsConstants.NO_TEXT);
     } catch (error) {
-        throw(error);
+        if (error.message == "Error: Argument error, options.body.") {
+            throw (errorsConstants.FILE_ERROR);
+        } else {
+            throw (error);
+        }
     }
 }

@@ -3,6 +3,7 @@ var converteur = require('../services/b64ToBinary').convertDataURIToBinary;
 const faceService = require('../services/face.service');
 const landscapeService = require('../services/landscape.service');
 const textService = require('../services/text.service');
+const errorsConstants = require('../constants/errors');
 
 exports.detection = async (req, res, next) => {
     try {
@@ -27,24 +28,29 @@ exports.detection = async (req, res, next) => {
             landscapesDetection = e;
         }
 
-        try {
-            var text = await textService.getTexts(imageBinary);
-            textDetection = true;
-        } catch (e) {
-            textDetection = e;
+        textDetection = errorsConstants.NO_TEXT;
+        if (facesDetection !== true) {
+            try {
+                var text = await textService.getTexts(imageBinary);
+                if (text === '')
+                    throw (errorsConstants.NO_TEXT);
+                textDetection = true;
+            } catch (e) {
+                textDetection = e;
+            }
         }
 
         if (facesDetection === true || landscapesDetection === true || textDetection === true) {
             res.json({
-                faces: facesDetection === true ? informations : false,
+                faces: facesDetection === true ? informations : facesDetection,
                 landscape: landscapesDetection === true ? landscape : false,
-                textDetection: textDetection === true ? text : false
+                text: textDetection === true ? text : textDetection
             });
         } else {
             res.json({
                 faces: facesDetection,
                 landscape: landscapesDetection,
-                textDetection: textDetection
+                text: textDetection
             });
         }
     } catch (e) {

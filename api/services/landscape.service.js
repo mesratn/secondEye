@@ -15,12 +15,16 @@ exports.getLandscapes = async (imageBinary) => {
 
             return response;
         } else {
-            if ('code' in data) // TODO: use errorsConstant
-                throw (data);
+            if ('code' in landscape) // TODO: use errorsConstant
+                throw (landscape.code);
             else
-                throw (errorsConstants.UNHANDLED_ERROR);
+                throw (errorsConstants.NO_LANDSCAPE);
         }
     } catch (error) {
-        throw(error);   
+        if (error.message == "Error: Argument error, options.body.") {
+            throw (errorsConstants.FILE_ERROR);
+        } else {
+            throw (error);
+        }  
     }
 }
