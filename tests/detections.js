@@ -134,22 +134,22 @@ describe('Face', function () {
         });
     });
 
-    // describe('/POST face/add', () => {
-    //     it('it should add a face and confirm it', (done) => {
-    //         chai.request(server)
-    //             .post('/face/add')
-    //             .send({ data: images.lola, name: 'Lola' })
-    //             .end((err, res) => {
-    //                 expect(err).to.be.null;
+    describe('/POST face/add', () => {
+        it('it should add a face and confirm it', (done) => {
+            chai.request(server)
+                .post('/face/add')
+                .send({ data: images.lola, name: 'Lola' })
+                .end((err, res) => {
+                    expect(err).to.be.null;
 
-    //                 res.should.have.status(200);
-    //                 res.body.should.be.a('object');
-    //                 expect(res.body.message).to.equal("Person added");
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    expect(res.body.message).to.equal("Person added");
 
-    //                 done();
-    //             });
-    //     });
-    // });
+                    done();
+                });
+        });
+    });
 
 
     describe('/POST detection', () => {

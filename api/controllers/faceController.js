@@ -4,34 +4,6 @@ var converteur = require('../services/b64ToBinary').convertDataURIToBinary;
 const FaceService = require('../services/face.service');
 
 /*
- * Fonction qui détecte la présence de visages dans une image
- * @body :
- *      data : l'image en b64
- *
- * @return :
- *      - 400, error
- *      - 520, unknown error
- *      - 200, json
- *
- * Cette fonction fait appel à l'API Microsoft :
- * Face:detect
- */
-
-
-exports.all_faces_informations = async (req, res, next) => {
-    try {
-        const sourceImage = req.body.data;
-        const imageBinary = converteur(sourceImage);
-
-        var informations = await FaceService.getFaces(imageBinary);
-        res.json(informations);
-    } catch (e) {
-        next(e);
-    }
-    
-}
-
-/*
  * Fonction qui lie un nom à un visage
  * @body :
  *      data : l'image en b64
